@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)/.ui/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="/suppliers/rocketunicorn.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="./ui/manifest.json">
+    <title>Suppliers</title>
+    <link href="/suppliers/2.297a834a.chunk.css" rel="stylesheet">
+    <link href="/suppliers/main.2c4ba152.chunk.css" rel="stylesheet">
+</head>
+
+<body class=""><noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+        <div class="container">
+            <div class="no-gutters row">
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <nav class="navbar navbar-expand-md navbar-light" style="background: rgb(255, 255, 255);">
+                        <a href="https://www.uipath.com/" class="navbar-brand"><img class="MainHeader-logo--maxi" src="/suppliers/UiPath-full-logo.svg" alt="UiPath Logo"></a><button type="button" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse">
+                            <ul class="d-flex flex-row-reverse ml-auto nav nav-tabs">
+                                <li class="dropdown nav-item"><a aria-haspopup="true" href="./ui/#" class="dropdown-toggle nav-link" aria-expanded="false">Language</a>
+                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" style="min-width: 0px;"><button type="button" tabindex="0" role="menuitem" class="dropdown-item"><a href="./ui/?locale=en" class="LanguageSwitcher-button"><img src="/suppliers/USA-1.svg" alt="English"><span>EN</span></a></button> <button type="button"
+                                            tabindex="0" role="menuitem" class="dropdown-item"><a href="./ui/?locale=jp" class="LanguageSwitcher-button"><img src="/suppliers/Japan.svg" alt="Japanese"><span>JP</span></a></button>
+                                        <button type="button" tabindex="0" role="menuitem" class="dropdown-item">
+                                            <a class="LanguageSwitcher-button" hreflang="es" data-language="es" href="./ui/?locale=es"><img src="/suppliers/flag-Spain.svg" alt="Spanish"><span>ES</span></a>
+                                            </button><button type="button" tabindex="0" role="menuitem" class="dropdown-item"><a class="LanguageSwitcher-button" hreflang="de" data-language="de" href="./ui/?locale=de"><img src="/suppliers/Germany.svg" alt="Deutsch"><span>DE</span></a></button>
+                                        <button type="button" tabindex="0" role="menuitem" class="dropdown-item">
+                                                <a class="LanguageSwitcher-button" hreflang="fr" data-language="fr" href="./ui/?locale=fr"><img src="/suppliers/France.svg" alt="French"><span>FR</span></a>
+                                                </button><button type="button" tabindex="0" role="menuitem" class="dropdown-item"><a class="LanguageSwitcher-button" hreflang="cn" data-language="cn" href="./ui/?locale=cn"><img src="/suppliers/china.svg" alt="Chinese"><span>CN</span></a></button>
+                                        <button type="button" tabindex="0" role="menuitem" class="dropdown-item">
+                                                    <a class="LanguageSwitcher-button" hreflang="ko" data-language="ko" href="./ui/?locale=ko"><img src="/suppliers/flag-South Korea.svg" alt="Korean"><span>KO</span></a>
+                                                    </button>
+                                    </div>
+                                </li>
+                                <li class="nav-item"><a disabled="" href="/ui/#" class="nav-link disabled">Business Units</a></li>
+                                <li class="nav-item"><a href="/ui/#" class="nav-link active">Suppliers</a></li>
+                                <li class="nav-item"><a disabled="" href="/ui/#" class="nav-link disabled">Clients</a></li>
+                                <li class="nav-item"><a disabled="" href="/ui/#" class="nav-link disabled">Invoices</a></li>
+                                <li class="nav-item"><a disabled="" href="/ui/#" class="nav-link disabled">Reports</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="Toastify">
+                <div class="Toastify__toast-container Toastify__toast-container--top-right" style="pointer-events: none;"></div>
+            </div>
+            <div class="flex-xl-nowrap no-gutters row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="jumbotron" style="background-color: rgb(248, 249, 250); opacity: 0.8;">
+                        <h3 class="display-3">Suppliers</h3>
+                        <p class="lead">This is a simple training page that let's you get used to UiPath's Studio</p><br><br>
+                        <div>
+                            <div class="infinite-scroll-component " style="height: auto; overflow: auto;">
+                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-bottom: 1rem;">
+                                    <div class="btn-group float-left mr-auto" role="group" aria-label="First group">
+                                        <div style="display: inline-flex;"><select><option value="">Select Field</option><option id="searchByAccountName" value="accountInfo.internalName">Account Name</option><option id="searchByIndustry" value="accountInfo.industry">Industry</option><option id="searchBySupplierAddress" value="supplierInfo.city">Supplier Address</option></select></div>
+                                    </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="First group"><a download="UiPath_Demo_Suppliers_Export_Mon Nov 18 2019 11:19:34 GMT-0800 (Pacific Standard Time).csv" class="btn btn-primary" target="_self" href="blob:http://35.178.196.245/51abf4ee-6051-4ab3-ad78-08d02ed284aa">Export CSV </a></div>
+                                    <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                        <div><button type="button" class="btn btn-secondary" style="background: rgb(250, 69, 22); opacity: 1; border-color: rgb(250, 69, 22); border-radius: 4px;">New Supplier</button></div>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>
+                                                <div style="display: inline-block;">Account Name
+                                                    <div style="display: inline-block;"><span class="sort-indicator" style="color: rgb(180, 191, 195);"><span class="caretDown"></span></span>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div style="display: inline-block;">Industry
+                                                    <div style="display: inline-block;">
+                                                        <div class="sort-indicator" style="color: rgb(180, 191, 195);"><span class="caretDown"></span></div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div style="display: inline-block;">Supplier Address
+                                                    <div style="display: inline-block;">
+                                                        <div class="sort-indicator" style="color: rgb(180, 191, 195);"><span class="caretDown"></span></div>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Courses, Pragmatic</td>
+                                            <td>Education</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Trainers 3, Teoretic Trainers</td>
+                                            <td>Education</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Trainers 2, Tehnical Trainers</td>
+                                            <td>Education</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Contractors 1, Teams</td>
+                                            <td>Services</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Trainers, Expert Trainers</td>
+                                            <td>Education</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>Vegetables Provider, Angry Vegetables</td>
+                                            <td>Agriculture</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>Food Provider, Hungry</td>
+                                            <td>Food</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">8</th>
+                                            <td>Metal Provider, Modern Metal</td>
+                                            <td>Metal</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">9</th>
+                                            <td>Wood Provider, Creative Wood</td>
+                                            <td>Wood</td>
+                                            <td>Berlin, Hartmangrh</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">10</th>
+                                            <td>Bank, Smart Bank</td>
+                                            <td>Banking</td>
+                                            <td>New York, Times</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">11</th>
+                                            <td>Internet Provider, InterPower Group</td>
+                                            <td>Telecom</td>
+                                            <td>Barcelona, Olala</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">12</th>
+                                            <td>HR Provider, HR Top Recruitment</td>
+                                            <td>Human Resources</td>
+                                            <td>Paris, Olala</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">13</th>
+                                            <td>HR Provider, HR Expert</td>
+                                            <td>Human Resources</td>
+                                            <td>Paris, Olala</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">14</th>
+                                            <td>Energy Provider, ENEL</td>
+                                            <td>Energy</td>
+                                            <td>Paris, Olala</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">15</th>
+                                            <td>VPN Services, Secure VPN Provider</td>
+                                            <td>Communication</td>
+                                            <td>Paris, Olala</td>
+                                            <td>
+                                                <div class="dropdown"><button type="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle btn btn-secondary"><span class="sr-only">Toggle Dropdown</span></button>
+                                                    <div tabindex="1" role="menu" aria-hidden="false" class="dropdown-menu " style="top: 0px; left: 0px; width: 100px; min-width: 100px; max-width: 100px;"><button type="button" class="dropdown-item btn btn-secondary">Edit</button><button id="delete-supplier" type="button" role="menuitem" class="dropdown-item">Delete</button></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        ! function(l) {
+            function e(e) {
+                for (var r, t, n = e[0], o = e[1], u = e[2], f = 0, i = []; f < n.length; f++) t = n[f], p[t] && i.push(p[t][0]), p[t] = 0;
+                for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (l[r] = o[r]);
+                for (s && s(e); i.length;) i.shift()();
+                return c.push.apply(c, u || []), a()
+            }
+
+            function a() {
+                for (var e, r = 0; r < c.length; r++) {
+                    for (var t = c[r], n = !0, o = 1; o < t.length; o++) {
+                        var u = t[o];
+                        0 !== p[u] && (n = !1)
+                    }
+                    n && (c.splice(r--, 1), e = f(f.s = t[0]))
+                }
+                return e
+            }
+            var t = {},
+                p = {
+                    1: 0
+                },
+                c = [];
+
+            function f(e) {
+                if (t[e]) return t[e].exports;
+                var r = t[e] = {
+                    i: e,
+                    l: !1,
+                    exports: {}
+                };
+                return l[e].call(r.exports, r, r.exports, f), r.l = !0, r.exports
+            }
+            f.m = l, f.c = t, f.d = function(e, r, t) {
+                f.o(e, r) || Object.defineProperty(e, r, {
+                    enumerable: !0,
+                    get: t
+                })
+            }, f.r = function(e) {
+                "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                    value: "Module"
+                }), Object.defineProperty(e, "__esModule", {
+                    value: !0
+                })
+            }, f.t = function(r, e) {
+                if (1 & e && (r = f(r)), 8 & e) return r;
+                if (4 & e && "object" == typeof r && r && r.__esModule) return r;
+                var t = Object.create(null);
+                if (f.r(t), Object.defineProperty(t, "default", {
+                        enumerable: !0,
+                        value: r
+                    }), 2 & e && "string" != typeof r)
+                    for (var n in r) f.d(t, n, function(e) {
+                        return r[e]
+                    }.bind(null, n));
+                return t
+            }, f.n = function(e) {
+                var r = e && e.__esModule ? function() {
+                    return e.default
+                } : function() {
+                    return e
+                };
+                return f.d(r, "a", r), r
+            }, f.o = function(e, r) {
+                return Object.prototype.hasOwnProperty.call(e, r)
+            }, f.p = "./";
+            var r = window.webpackJsonp = window.webpackJsonp || [],
+                n = r.push.bind(r);
+            r.push = e, r = r.slice();
+            for (var o = 0; o < r.length; o++) e(r[o]);
+            var s = n;
+            a()
+        }([])
+    </script>
+    <script src="/suppliers/2.ea6ccdd9.chunk.js"></script>
+    <script src="/suppliers/main.ad77f977.chunk.js"></script>
+</body>
+
+</html>
