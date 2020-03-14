@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Generator</title>
+    <!-- <link rel="shortcut icon" href="/assets/rocketunicorn.ico"> -->
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="title-container">
+            Create a strong password
+        </div>
+        <div class="password-container">
+            <div class="password-display">
+                <span id='generated-password' class='password-text'></span>
+            </div>
+            <div class='col-exsm'>
+                <button class='pword-button refresh tooltip' onclick="generateNewPassword()">
+                    <span class="tooltiptext">Generate new password</span>
+                </button>
+            </div>
+            <div class='col-exsm'>
+                <button class='pword-button copy tooltip' onclick="copyToClipboard()">
+                    <span class="tooltiptext">Copy to clipboard</span>
+                </button>
+            </div>
+        </div>
+        <br />
+        <div class='options-container'>
+            <div class='row'>
+                <div class='col-sm'><span class="label-length">Password length:</span></div>
+                <div class='chk-label'><input id='txt-length' class='len-textbox' type='text' value='24' onchange="generateNewPassword()" onkeydown="keyDown(event)" /></div>
+            </div>
+            <div class='row'>
+                <div class="col-sm">
+                    <div>
+                        <input type="checkbox" id='chkUpper' onchange="generateNewPassword()" checked></input>
+                        <div class='chk-label'>Upper case</div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <input type="checkbox" id='chkLower' onchange="generateNewPassword()" checked></input>
+                    <div class='chk-label'>Lower case</div>
+                </div>
+                <div class="col-sm">
+                    <input type="checkbox" id='chkNumbers' onchange="generateNewPassword()" checked></input>
+                    <div class='chk-label'>Numbers</div>
+                </div>
+                <div class="col-sm">
+                    <input type="checkbox" id='chkSymbols' onchange="generateNewPassword()" checked></input>
+                    <div class='chk-label'>Symbols</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

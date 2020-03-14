@@ -1,3 +1,10 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+keys.json
+
 # Logs
 logs
 *.log

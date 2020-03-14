@@ -1,0 +1,195 @@
+.col-exsm {
+    display: inline-block;
+    width: 60px;
+    vertical-align: top;
+}
+
+.col-sm {
+    display: inline-block;
+    width: 190px;
+    vertical-align: top;
+}
+
+.password-display {
+    display: inline-block;
+    width: 780px;
+    vertical-align: top;
+}
+
+.row {
+    padding: 5px;
+    vertical-align: text-top;
+}
+
+.table {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.disabled-text {
+    color: gray;
+}
+
+.lbl-header {
+    margin-left: 10px;
+    font-size: 110%;
+}
+
+.lbloutput {
+    font-weight: bold;
+    margin-top: 3px;
+    padding-left: 5px;
+}
+
+.text-placeholder {
+    font-weight: normal;
+    color: rgb(50, 50, 50);
+}
+
+.collapse {
+    visibility: collapse;
+    width: 0px;
+}
+
+.section-head {
+    color: white;
+    background-color: rgb(0, 45, 130);
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    margin: -10px;
+    margin-bottom: 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.title-container {
+    /* display: inline-block; */
+    font-size: 34px;
+    margin-bottom: 16px;
+}
+
+.password-container {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    min-width: 820px;
+    background-color: darkgreen;
+    font-size: 40px;
+    padding: 20px;
+    color: white;
+}
+
+.options-container {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-align: left;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.page-container {
+    margin-top: 50px;
+}
+
+body {
+    background-color: rgb(230, 230, 230);
+    text-align: center;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+select {
+    padding: 1px;
+    font-size: 100%;
+    color: black;
+}
+
+input {
+    padding: 2px;
+    font-size: 100%;
+}
+
+.pword-button {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: none;
+    border: 0;
+}
+
+.pword-button:hover {
+    background-color: green;
+}
+
+.refresh {
+    background: url("refresh.png");
+}
+
+.copy {
+    background: url("copy.png");
+}
+
+.password-text {
+    display: inline-block;
+    margin: 8px auto auto 10px;
+}
+
+input[type='checkbox'] {
+    /* -webkit-appearance: none; */
+    width: 20px;
+    height: 20px;
+    /* background: white;
+    border-radius: 5px; */
+    border: 2px solid #555;
+    margin: 5px 4px 4px 4px;
+    display: inline-block;
+}
+
+.chk-label {
+    display: inline-block;
+    top: -3px;
+    position: relative;
+}
+
+.len-textbox {
+    border-width: 0px 0px 3px 0px;
+    width: 34px;
+    border-color: darkgray;
+}
+
+.label-length {
+    margin-left: 4px;
+}
+
+
+/* Tooltip text */
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    /* width: 120px; */
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px 8px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    margin-top: 23px;
+    text-align: left;
+    font-size: 18px;
+    /* top: -5px;
+    left: 105%; */
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
