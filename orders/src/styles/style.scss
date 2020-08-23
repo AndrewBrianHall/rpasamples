@@ -3,7 +3,7 @@ table {
     /* width: 750px; */
     border-collapse: collapse;
     border: 3px solid #44475C;
-    margin: 10px 10px 0 10px;
+    margin: 10px 0px 10px 0px;
 }
 
 table th {
@@ -33,4 +33,16 @@ table td:last-child {
 
 div {
     text-align: left;
+}
+
+div.recordCount {
+    display: inline-block;
+}
+
+div.exportButton {
+    float: right;
+}
+
+div.appContainer {
+    display: inline-block;
 }

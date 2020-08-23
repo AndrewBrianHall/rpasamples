@@ -1,10 +1,18 @@
 <template>
-  <div>
-    <div>Total Records</div>
-    <div>{{data.totalOpportunities}}</div>
+  <div class="appContainer">
+    <div>
+      <div class="recordCount">
+        <div>Total Records</div>
+        <div>{{data.totalOpportunities}}</div>
+      </div>
+      <div class="exportButton">
+        <button v-on:click="exportExcel()">Export</button>
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
+          <th></th>
           <th
             v-bind:key="col.property"
             v-for="col in columns"
@@ -14,12 +22,15 @@
       </thead>
       <tbody>
         <tr v-for="row in rows" v-bind:key="row.id">
+          <td>{{row.id}}</td>
           <td v-bind:key="col.property" v-for="col in columns">{{row[col.property]}}</td>
         </tr>
       </tbody>
     </table>
-    <button v-on:click="exportExcel()">Export</button>
-    <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}">Export powered by the <a href="https://sheetjs.com/opensource">community version of sheetjs</a></div>
+    <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}">
+      Export powered by the
+      <a href="https://sheetjs.com/opensource">community version of sheetjs</a>
+    </div>
   </div>
 </template>
 
@@ -32,7 +43,7 @@ export default {
   data() {
     return {
       data: new DataCollection(),
-      showExportMessage: false
+      showExportMessage: false,
     };
   },
   computed: {

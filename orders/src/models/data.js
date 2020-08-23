@@ -34,17 +34,17 @@ class Money {
         return `${this.currency} ${sign} ${this.insertSeparators(numStr)}${this.insertDecimalPlaces()}`;
     }
 
-    constructor(number, decPlaces, currency, locale) {
+    constructor(number, decPlaces, currency, localeFormat) {
         this.decSep = '.';
         this.number = number;
         this.decPlaces = decPlaces;
         this.currency = currency;
-        this.locale = locale === undefined ? "USA" : locale;
+        this.localeFormat = localeFormat === undefined ? "USA" : localeFormat;
     }
 }
 
 class Opportunity {
-    constructor(id, accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwner) {
+    constructor(id, accountName, country, stage, quantity, unitPrice, listPrice, currency, opportunityOwner) {
         this.decimalPlaces = 0;
 
         this.id = id;
@@ -52,7 +52,7 @@ class Opportunity {
         this.country = country;
         this.stage = stage;
         this.quantity = quantity;
-        this.unitPrice = unitSalesPrice;
+        this.unitPrice = unitPrice;
         this.listPrice = listPrice;
         this.currency = currency;
         this.opportunityOwner = opportunityOwner;
@@ -87,11 +87,17 @@ function Employee(id, name) {
     this.name = name;
 }
 
+const columnTypes = {
+    Text: 'text',
+    Number: 'number',
+    Price: 'price'
+}
+
 class ColumnMapping {
-    constructor(property, displayName, isPrice) {
+    constructor(property, displayName, columnType) {
         this.property = property;
         this.displayName = displayName;
-        this.isPrice = isPrice === undefined ? false : isPrice;
+        this.columnType = columnType === undefined ? columnTypes.Text : columnType;
     }
 }
 
@@ -104,9 +110,14 @@ export default class DataCollection {
         this.addEmployee("Mark Stone");
         this.addEmployee("Helen Rock");
 
-        this.addOpportunity("VPN Service", "France", "Closed Won Booked", 10, 7980, 4000, "EUR", this.employees[0]);
+        this.addOpportunity("VPN Service", "France", "Closed Won Booked", 10, 7980, 8000, "EUR", this.employees[0]);
+        this.addOpportunity("HR Provider", "Germany", "Negotiation", 1, 10000, 10500, "EUR", this.employees[2]);
         this.addOpportunity('Wood Provider', 'USA', 'Closed Won Booked', 250, 3000, 4000, 'USD', this.employees[1]);
-        this.addOpportunity("Metal Provider", "Germany", "Closed Won Booked", 15, 2000, 4000, "EUR", this.employees[2]);
+        this.addOpportunity('Bank', 'USA', 'Proposal', 50, 2895, 4000, 'USD', this.employees[1]);
+        this.addOpportunity("Metal Provider", "Germany", "Closed Won Booked", 15, 2000, 3500, "EUR", this.employees[2]);
+        this.addOpportunity("Energy Provider", "France", "Negotiation", 4, 1200, 1250, "EUR", this.employees[0]);
+        this.addOpportunity("HR Top Recruitment", "France", "Closed Lost", 3, 2000, 2000, "EUR", this.employees[0]);
+        this.addOpportunity('Godzilla LLC', 'Germany', 'Proposal', 20, 1300, 2000, 'EUR', this.employees[1]);
     }
 
     addOpportunity(accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwner) {
@@ -136,10 +147,10 @@ export default class DataCollection {
             new ColumnMapping("country", "Country"),
             new ColumnMapping("displayOpportunityOwner", "Opportunity Owner"),
             new ColumnMapping("stage", "Stage"),
-            new ColumnMapping("quantity", "Quantity"),
-            new ColumnMapping("unitPrice", "Unit Sales Price", true),
-            new ColumnMapping("totalPrice", "Total Price", true),
-            new ColumnMapping("listPrice", "List Price", true),
+            new ColumnMapping("quantity", "Quantity", columnTypes.Number),
+            new ColumnMapping("unitPrice", "Unit Sales Price", columnTypes.Price),
+            new ColumnMapping("totalPrice", "Total Price", columnTypes.Price),
+            new ColumnMapping("listPrice", "List Price", columnTypes.Price),
         ];
     }
 
@@ -174,14 +185,17 @@ export default class DataCollection {
         for (let row = 0; row < this.opportunities.length; row++) {
             let newRow = [];
             for (let col = 0; col < columns.length; col++) {
-                let cellValue = this.opportunities[row][columns[col].property];
+                const rowData = this.opportunities[row];
+                let cellValue = rowData[columns[col].property];
                 let cellLength = cellValue.toString().length;
 
-                if (columns[col].isPrice) {
+                if (columns[col].columnType === columnTypes.Price) {
                     // cellValue = 10000;
-                    newRow.push({ t: 'n', v: cellValue, z: '"USD" #,##0.00;"USD" -#,##0.00' });
+                    newRow.push({ t: 'n', v: cellValue, z: `"${rowData.currency}" #,##0.00;"${rowData.currency}" -#,##0.00` });
                     cellLength = new Money(cellValue, 2, this.opportunities[row].currency).displayWithCurrency.length;
                     console.log(`${new Money(cellValue, 2, this.opportunities[row].currency).displayWithCurrency} ${cellLength}`);
+                } else if (columns[col].columnType === columnTypes.Number) {
+                    newRow.push({ t: 'n', v: cellValue });
                 } else {
                     newRow.push(cellValue);
                 }
