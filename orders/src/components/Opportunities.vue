@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Message, { DataCollection } from "../models/data.js";
+import DataCollection from "../models/data.js";
 
 export default {
   name: "Opportunities",

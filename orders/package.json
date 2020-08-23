@@ -35,8 +35,7 @@
             "parser": "babel-eslint"
         },
         "rules": {
-            "no-unused-vars": "off",
-            "vue/require-v-for-key": "off"
+            "no-unused-vars": "off"
         }
     },
     "browserslist": [

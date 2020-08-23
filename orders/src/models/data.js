@@ -1,9 +1,3 @@
-export default class Message {
-    constructor(msg) {
-        this.msg = msg;
-    }
-}
-
 class Money {
 
     insertSeparators(num) {
@@ -13,7 +7,7 @@ class Money {
         return this.insertSeparators(num.substr(0, num.length - 3)) + ',' + num.substr(num.length - 3);
     }
 
-    formatDisplayValue() {
+    get displayWithCurrency() {
         let decSep = ".";
         let thouSep = ",";
         let number = this.number;
@@ -25,31 +19,48 @@ class Money {
         var sign = number < 0 ? "-" : "";
         var numStr = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
 
-        return sign + this.insertSeparators(numStr);
+        return `${this.currency} ${sign} ${this.insertSeparators(numStr)}`;
     }
 
-    constructor(number, decPlaces, locale) {
+    constructor(number, decPlaces, currency, locale) {
         this.number = number;
         this.decPlaces = decPlaces;
+        this.currency = currency;
         this.locale = locale === undefined ? "USA" : locale;
-        this.displayValue = this.formatDisplayValue();
     }
 }
 
 class Opportunity {
-    constructor(id, accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwnerId) {
+    constructor(id, accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwner) {
+        this.decimalPlaces = 0;
+
         this.id = id;
         this.accountName = accountName;
         this.country = country;
         this.stage = stage;
         this.quantity = quantity;
         this.unitSalesPrice = unitSalesPrice;
-        this.displayListPrice = new Money(listPrice).displayValue;
+        this.listPrice = listPrice;
         this.currency = currency;
-        this.opportunityOwnerId = opportunityOwnerId;
+        this.opportunityOwner = opportunityOwner;
 
-        this.displayUnitPrice = this.currency + " " + new Money(this.unitSalesPrice, 0).displayValue;
-        this.totalPrice = this.currency + " " + new Money(this.quantity * this.unitSalesPrice, 0).displayValue;
+        this.totalPrice = this.quantity * this.unitSalesPrice;
+    }
+
+    get displayUnitPrice() {
+        return new Money(this.unitSalesPrice, this.decimalPlaces, this.currency).displayWithCurrency;
+    }
+
+    get displayTotalPrice() {
+        return new Money(this.totalPrice, this.decimalPlaces, this.currency).displayWithCurrency;
+    }
+
+    get displayListPrice() {
+        return new Money(this.listPrice, this.decimalPlaces, this.currency).displayWithCurrency;
+    }
+
+    get displayOpportunityOwner() {
+        return this.opportunityOwner.name;
     }
 
 }
@@ -66,22 +77,22 @@ class ColumnMapping {
     }
 }
 
-export class DataCollection {
+export default class DataCollection {
     constructor() {
         this.opportunities = [];
         this.employees = [];
 
-        this.addOpportunity("VPN Service", "France", "Closed Won Booked", 10, 7980, 4000, "EUR", 0);
-        this.addOpportunity('Wood Provider', 'USA', 'Closed Won Booked', 250, 3000, 4000, 'USD', 1);
-        this.addOpportunity("Metal Provider", "Germany", "Closed Won Booked", 15, 2000, 4000, "EUR", 2);
-
         this.addEmployee("Jane Pebble");
         this.addEmployee("Mark Stone");
         this.addEmployee("Helen Rock");
+
+        this.addOpportunity("VPN Service", "France", "Closed Won Booked", 10, 7980, 4000, "EUR", this.employees[0]);
+        this.addOpportunity('Wood Provider', 'USA', 'Closed Won Booked', 250, 3000, 4000, 'USD', this.employees[1]);
+        this.addOpportunity("Metal Provider", "Germany", "Closed Won Booked", 15, 2000, 4000, "EUR", this.employees[2]);
     }
 
-    addOpportunity(accountName, country, stage, quantity, unitSalesPrice, listPrice, currency) {
-        this.opportunities.push(new Opportunity(this.opportunities.length + 1, accountName, country, stage, quantity, unitSalesPrice, listPrice, currency));
+    addOpportunity(accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwner) {
+        this.opportunities.push(new Opportunity(this.opportunities.length + 1, accountName, country, stage, quantity, unitSalesPrice, listPrice, currency, opportunityOwner));
     }
 
     addEmployee(name) {
@@ -92,10 +103,11 @@ export class DataCollection {
         return [
             new ColumnMapping("accountName", "Account Name"),
             new ColumnMapping("country", "Country"),
+            new ColumnMapping("displayOpportunityOwner", "Opportunity Owner"),
             new ColumnMapping("stage", "Stage"),
             new ColumnMapping("quantity", "Quantity"),
             new ColumnMapping("displayUnitPrice", "Unit Sales Price"),
-            new ColumnMapping("totalPrice", "Total Price"),
+            new ColumnMapping("displayTotalPrice", "Total Price"),
             new ColumnMapping("displayListPrice", "List Price"),
         ];
     }
