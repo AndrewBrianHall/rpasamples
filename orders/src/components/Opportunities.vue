@@ -1,35 +1,29 @@
 <template>
-  <div class="appContainer">
-    <div>
-      <div class="recordCount">
-        <div>Total Records</div>
-        <div>{{data.totalOpportunities}}</div>
-      </div>
-      <div class="exportButton">
-        <button v-on:click="exportExcel()">Export</button>
-      </div>
+  <div>
+    <div class="record-header">
+      <div class="total-label">Total Records</div>
+      <div class="total-count">{{data.totalOpportunities}}</div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th
-            v-bind:key="col.property"
-            v-for="col in columns"
-            v-on:click="sortTable(col)"
-          >{{col.displayName}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="row in rows" v-bind:key="row.id">
-          <td>{{row.id}}</td>
-          <td v-bind:key="col.property" v-for="col in columns">{{row[col.property]}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}">
-      Export powered by the
-      <a href="https://sheetjs.com/opensource">community version of sheetjs</a>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th
+              v-bind:key="col.property"
+              v-for="col in columns"
+              v-on:click="sortTable(col)"
+            >{{col.displayName}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in rows" v-bind:key="row.id">
+            <td class="center">{{row.id}}</td>
+            <td v-bind:key="col.property" v-for="col in columns" v-bind:class="{right: col.rightAlign}">{{row[col.property]}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-right-spacer"></div>
     </div>
   </div>
 </template>
@@ -40,9 +34,9 @@ import XLSX from "xlsx";
 
 export default {
   name: "Opportunities",
+  props: ["data"],
   data() {
     return {
-      data: new DataCollection(),
       showExportMessage: false,
     };
   },
@@ -53,19 +47,87 @@ export default {
     rows: function () {
       return this.data.opportunities;
     },
-  },
-  methods: {
-    exportExcel: function (event) {
-      let wb = this.data.getExcelWorkbook();
-
-      XLSX.writeFile(wb, "test.xlsx");
-      this.showExportMessage = true;
-    },
-  },
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "../styles/style.scss";
+@import "../styles/constants.scss";
+
+$table-border-color: rgb(175, 175, 175);
+
+.table-container{
+  border-top: 1px solid $table-border-color;
+  // padding-left: $left-report-padding;
+}
+
+td.center{
+  text-align: center;
+}
+
+td.right{
+  text-align: right;
+}
+
+table {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.94em;
+  display: inline-block;
+  border-collapse: collapse;
+  border: 1px solid $table-border-color;
+  margin-top: -1px;
+}
+
+table th {
+  /* text-transform: uppercase; */
+  text-align: left;
+  background: $header-background;
+  color: rgb(90, 90, 90);
+  font-size: 0.85em;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 30px;
+  border-right: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+table th:hover {
+  background: rgb(200, 200, 200);
+}
+
+table td {
+  text-align: left;
+  padding: 8px;
+  border-right: 1px solid $table-border-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+table td:last-child {
+  border-right: none;
+}
+
+.table-right-spacer{
+  width: $right-table-padding;
+  display: inline-block;
+}
+
+div {
+  text-align: left;
+}
+
+.record-header {
+  margin: 4px 0px;
+  padding-left: $left-report-padding;
+}
+
+.total-label {
+  font-size: 0.88em;
+  color: rgb(95, 95, 95);
+}
+
+.total-count {
+  font-size: 1.1em;
+  color: rgb(33, 57, 80);
+}
 </style>

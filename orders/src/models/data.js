@@ -76,10 +76,6 @@ class Opportunity {
         return this.opportunityOwner.name;
     }
 
-    getExcelRow() {
-
-    }
-
 }
 
 function Employee(id, name) {
@@ -98,6 +94,7 @@ class ColumnMapping {
         this.property = property;
         this.displayName = displayName;
         this.columnType = columnType === undefined ? columnTypes.Text : columnType;
+        this.rightAlign = this.columnType === columnTypes.Text ? false : true;
     }
 }
 
@@ -134,10 +131,10 @@ export default class DataCollection {
             new ColumnMapping("country", "Country"),
             new ColumnMapping("displayOpportunityOwner", "Opportunity Owner"),
             new ColumnMapping("stage", "Stage"),
-            new ColumnMapping("quantity", "Quantity"),
-            new ColumnMapping("displayUnitPrice", "Unit Sales Price"),
-            new ColumnMapping("displayTotalPrice", "Total Price"),
-            new ColumnMapping("displayListPrice", "List Price"),
+            new ColumnMapping("quantity", "Quantity", columnTypes.Number),
+            new ColumnMapping("displayUnitPrice", "Unit Sales Price", columnTypes.Price),
+            new ColumnMapping("displayTotalPrice", "Total Price", columnTypes.Price),
+            new ColumnMapping("displayListPrice", "List Price", columnTypes.Price),
         ];
     }
 
@@ -218,6 +215,7 @@ export default class DataCollection {
         ws['!cols'] = wscols;
         wb.Sheets["Report"] = ws;
 
+        XLSX.writeFile(wb, "test.xlsx");
         return wb;
     }
 }
