@@ -90,7 +90,7 @@ const columnTypes = {
     Price: 'price'
 }
 
-const sortDirections = {
+export const sortDirections = {
     None: 'None',
     Asc: 'Asc',
     Desc: 'Desc'
@@ -130,6 +130,8 @@ export default class DataCollection {
         this._addOpportunity("Energy Provider", "France", "Negotiation", 4, 1200, 1250, "EUR", this.employees[0]);
         this._addOpportunity("HR Top Recruitment", "France", "Closed Lost", 3, 2000, 2000, "EUR", this.employees[0]);
         this._addOpportunity('Godzilla LLC', 'Germany', 'Proposal', 20, 1300, 2000, 'EUR', this.employees[1]);
+
+        this.opportunities = this._opportunities.slice();
     }
 
     _addEmployee(name) {
@@ -178,10 +180,6 @@ export default class DataCollection {
             this._columns.totalPrice,
             this._columns.listPrice,
         ];
-    }
-
-    get opportunities() {
-        return this._opportunities;
     }
 
     get totalOpportunities() {
@@ -262,7 +260,7 @@ export default class DataCollection {
         }
         this._sortColumn = col;
 
-        this._opportunities.sort(function sortFunction(a, b) {
+        this.opportunities = this._opportunities.slice().sort(function sortFunction(a, b) {
             if (a[col.sortColumn.property] === b[col.sortColumn.property]) {
                 return 0;
             } else {
@@ -273,8 +271,8 @@ export default class DataCollection {
             }
         });
 
-        for (let i = 0; i < this._opportunities.length; i++) {
-            this._opportunities[i].row = i + 1;
+        for (let i = 0; i < this.opportunities.length; i++) {
+            this.opportunities[i].row = i + 1;
         }
     }
 }

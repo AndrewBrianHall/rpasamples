@@ -8,12 +8,12 @@
       <table>
         <thead>
           <tr>
-            <th></th>
+            <th class="td-row-num"></th>
             <th
               v-bind:key="col.property"
               v-for="col in columns"
               v-on:click="sortTable(col)"
-            >{{col.displayName}}</th>
+            >{{col.displayName}}<span class="sortHolder" v-bind:class="sortClassObject(col)"></span></th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import DataCollection from "../models/data.js";
+import DataCollection, {sortDirections} from "../models/data.js";
 import XLSX from "xlsx";
 
 export default {
@@ -57,6 +57,15 @@ export default {
       // let sorted = this.data.opportunities.splice();
       this.data.sortOpportunities(col);
     },
+    sortClassObject: function(col){
+      if(col.sortDirection === sortDirections.Asc){
+        return "asc";
+      }
+      else if(col.sortDirection === sortDirections.Desc){
+        return "desc";
+      }
+      return "";
+    }
   },
 };
 </script>
@@ -100,6 +109,25 @@ table th {
   min-width: 30px;
   border-right: 1px solid $table-border-color;
   border-bottom: 1px solid $table-border-color;
+}
+
+.sortHolder{
+  margin-left: 8px;
+  width: 12px;
+  display: inline-block;
+}
+
+.asc::after{
+  content: '\25B2';
+}
+
+.desc::after{
+  content: '\25BC';
+}
+
+th.td-row-num:hover{
+  cursor: default;
+  background: $header-background;
 }
 
 table th:hover {
