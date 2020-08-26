@@ -5,8 +5,8 @@
       <Opportunities v-bind:data="data" />
     </div>
     <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}" class="export-message">
-      Export powered by the
-      <a href="https://sheetjs.com/opensource">community version of sheetjs</a>
+      Exported using 
+      <a href="https://sheetjs.com/opensource">sheetjs community</a>
     </div>
   </div>
 </template>

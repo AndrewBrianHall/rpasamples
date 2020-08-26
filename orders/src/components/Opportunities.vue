@@ -18,8 +18,12 @@
         </thead>
         <tbody>
           <tr v-for="row in rows" v-bind:key="row.id">
-            <td class="center">{{row.id}}</td>
-            <td v-bind:key="col.property" v-for="col in columns" v-bind:class="{right: col.rightAlign}">{{row[col.property]}}</td>
+            <td class="center">{{row.row}}</td>
+            <td
+              v-bind:key="col.property"
+              v-for="col in columns"
+              v-bind:class="{right: col.rightAlign}"
+            >{{row[col.property]}}</td>
           </tr>
         </tbody>
       </table>
@@ -47,7 +51,13 @@ export default {
     rows: function () {
       return this.data.opportunities;
     },
-  }
+  },
+  methods: {
+    sortTable: function (col) {
+      // let sorted = this.data.opportunities.splice();
+      this.data.sortOpportunities(col);
+    },
+  },
 };
 </script>
 
@@ -57,22 +67,22 @@ export default {
 
 $table-border-color: rgb(175, 175, 175);
 
-.table-container{
+.table-container {
   border-top: 1px solid $table-border-color;
   // padding-left: $left-report-padding;
 }
 
-td.center{
+td.center {
   text-align: center;
 }
 
-td.right{
+td.right {
   text-align: right;
 }
 
 table {
   font-family: "Open Sans", sans-serif;
-  font-size: 0.94em;
+  font-size: 0.9em;
   display: inline-block;
   border-collapse: collapse;
   border: 1px solid $table-border-color;
@@ -100,14 +110,22 @@ table td {
   text-align: left;
   padding: 8px;
   border-right: 1px solid $table-border-color;
+}
+
+tr {
   border-bottom: 1px solid $table-border-color;
 }
 
-table td:last-child {
+tr:last-child {
+  border-bottom: none;
+}
+
+table td:last-child,
+th:last-child {
   border-right: none;
 }
 
-.table-right-spacer{
+.table-right-spacer {
   width: $right-table-padding;
   display: inline-block;
 }
