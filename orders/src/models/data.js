@@ -186,20 +186,58 @@ export default class DataCollection {
         return this._opportunities.length;
     }
 
-    getExcelWorkbook() {
-        let now = new Date();
-        let wb = XLSX.utils.book_new();
-        wb.Props = {
+    exportData(formatOption) {
+        let report = new ExcelReport(this._opportunities);
+        report.exportDataOnly(this.exportColumns);
+    }
+
+    sortOpportunities(col) {
+        if (this._sortColumn !== undefined && this._sortColumn !== col) {
+            this._sortColumn.sortDirection = sortDirections.None;
+        }
+        if (col.sortDirection === sortDirections.None || col.sortDirection === sortDirections.Desc) {
+            col.sortDirection = sortDirections.Asc;
+        } else {
+            col.sortDirection = sortDirections.Desc;
+        }
+        this._sortColumn = col;
+
+        this.opportunities = this._opportunities.slice().sort(function sortFunction(a, b) {
+            if (a[col.sortColumn.property] === b[col.sortColumn.property]) {
+                return 0;
+            } else {
+                if (col.sortDirection === sortDirections.Asc) {
+                    return a[col.sortColumn.property] < b[col.sortColumn.property] ? -1 : 1;
+                }
+                return a[col.sortColumn.property] > b[col.sortColumn.property] ? -1 : 1;
+            }
+        });
+
+        for (let i = 0; i < this.opportunities.length; i++) {
+            this.opportunities[i].row = i + 1;
+        }
+    }
+}
+
+class ExcelReport {
+    constructor(opportunities) {
+        this._opportunities = opportunities;
+        this.now = new Date();
+        this.wb = XLSX.utils.book_new();
+
+        this.wb.Props = {
             Title: "Sample Sales Report",
             Subject: "Sales Report",
             Author: "rpasamples.com",
             CreatedDate: new Date()
         };
+    }
 
-        wb.SheetNames.push("Report");
+    exportDataOnly(columns) {
+        this.wb.SheetNames.push("Report");
 
-        let columns = this.exportColumns;
-        let ws_data = [ /*            [{ t: "n", v: 10000 }, { t: "n", v: 10000, z: '"USD" #,##0.00;"USD" -#,##0.00' }] */ ];
+        // let columns = this.exportColumns;
+        let ws_data = [];
         let headers = [];
         let colWidths = [];
         for (let col = 0; col < columns.length; col++) {
@@ -243,36 +281,8 @@ export default class DataCollection {
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
         ws['!cols'] = wscols;
-        wb.Sheets["Report"] = ws;
+        this.wb.Sheets["Report"] = ws;
 
-        XLSX.writeFile(wb, `Opportunities ${now.getFullYear()}-${now.getMonth()}-${now.getDate()}.xlsx`);
-        return wb;
-    }
-
-    sortOpportunities(col) {
-        if (this._sortColumn !== undefined && this._sortColumn !== col) {
-            this._sortColumn.sortDirection = sortDirections.None;
-        }
-        if (col.sortDirection === sortDirections.None || col.sortDirection === sortDirections.Desc) {
-            col.sortDirection = sortDirections.Asc;
-        } else {
-            col.sortDirection = sortDirections.Desc;
-        }
-        this._sortColumn = col;
-
-        this.opportunities = this._opportunities.slice().sort(function sortFunction(a, b) {
-            if (a[col.sortColumn.property] === b[col.sortColumn.property]) {
-                return 0;
-            } else {
-                if (col.sortDirection === sortDirections.Asc) {
-                    return a[col.sortColumn.property] < b[col.sortColumn.property] ? -1 : 1;
-                }
-                return a[col.sortColumn.property] > b[col.sortColumn.property] ? -1 : 1;
-            }
-        });
-
-        for (let i = 0; i < this.opportunities.length; i++) {
-            this.opportunities[i].row = i + 1;
-        }
+        XLSX.writeFile(this.wb, `Opportunities ${this.now.getFullYear()}-${this.now.getMonth()}-${this.now.getDate()}.xlsx`);
     }
 }

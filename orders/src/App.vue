@@ -1,11 +1,12 @@
 <template>
   <div id="app">
+    <ExportPopup ref="exportPopup" v-bind:showModal="showExportPopup" v-bind:data="data" />
     <div class="main-report">
       <ReportTitle v-bind:exportExcel="exportExcel" />
       <Opportunities v-bind:data="data" />
     </div>
     <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}" class="export-message">
-      Exported using 
+      Exported using
       <a href="https://sheetjs.com/opensource">sheetjs community</a>
     </div>
   </div>
@@ -15,17 +16,20 @@
 import DataCollection from "./models/data.js";
 import ReportTitle from "./components/ReportTitle.vue";
 import Opportunities from "./components/Opportunities.vue";
+import ExportPopup from "./components/ExportPopup.vue";
 
 export default {
   name: "App",
   components: {
     Opportunities,
     ReportTitle,
+    ExportPopup,
   },
   data() {
     return {
       data: new DataCollection(),
       showExportMessage: false,
+      showExportPopup: false,
     };
   },
   computed: {
@@ -35,8 +39,8 @@ export default {
   },
   methods: {
     exportExcel: function (event) {
-      let wb = this.data.getExcelWorkbook();
-      this.showExportMessage = true;
+      let popup = this.$refs.exportPopup;
+      popup.showPopup();
     },
   },
 };

@@ -1,0 +1,25 @@
+@import './constants.scss';
+$icon-size: 28px;
+$export-btn-width: 80px;
+$export-btn-height: $icon-size;
+button.export-shape-props {
+    border-radius: 4px;
+    border-style: solid;
+    height: $export-btn-height;
+    width: $export-btn-width;
+    cursor: pointer;
+}
+
+button.export-common {
+    @extend button.export-shape-props;
+    background-color: $button-color;
+    border-color: $button-color;
+    color: white;
+}
+
+button.btn-export {
+    @extend button.export-common;
+    font-size: .95rem;
+    margin-left: auto;
+    margin-right: $right-table-padding - $left-report-padding;
+}
