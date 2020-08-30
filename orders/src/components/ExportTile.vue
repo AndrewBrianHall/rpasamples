@@ -74,5 +74,7 @@ export default {
 
 .tileSelected {
   border: 2px solid $lighter-blue;
+  // margin: 4px 16px 4px 0px;
+  margin: 3px 16px 4px -1px;
 }
 </style>

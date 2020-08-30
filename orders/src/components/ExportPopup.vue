@@ -15,6 +15,13 @@
                 v-bind:selected="selectionChanged"
               />
             </div>
+            <div>
+              <div class="lbl-export-format">Format</div>
+              <select v-model="exportFileFormat" v-bind:disabled="disableExportormatPicker">
+                <option value="xlsx">Excel (*.xlsx)</option>F
+                <option value="csv">Comma Separated (*.csv)</option>
+              </select>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -33,50 +40,76 @@ import ExportTile from "./ExportTile.vue";
 export default {
   name: "ExportPopup",
   components: { ExportTile },
-  props: ["data"],
+  props: ["data", "exportedCallback"],
   data() {
     return {
-      showModal: true,
+      showModal: false,
       options: [
         {
           id: 0,
-          title: "Formatted Report",
+          title: "By Stage",
           description:
-            "Export the report opportunities at each stage divided into different sheets",
+            "Export the opportunities divided into separate sheets for each stage.",
           selected: true,
+          supportsCsv: false,
         },
         {
           id: 1,
-          title: "Data Only",
-          description: "Export only the details as a single sheet",
+          title: "Raw Data",
+          description: "Export all data as a single sheet.",
           selected: false,
+          supportsCsv: true,
         },
       ],
+      exportFileFormat: "xlsx",
+      disableExportormatPicker: false,
     };
   },
   methods: {
     closePopup: function () {
       this.showModal = false;
     },
-    exportClick: function(){
-      let exportFormat = this.getSelectedOption();
-      this.data.exportData(exportFormat);
+    exportClick: function () {
+      let exportOption = this.getSelectedOption();
+      this.data.exportData({ option: exportOption, fileFormat: this.exportFileFormat });
+      this.exportedCallback(true);
+      this.showModal = false;
     },
     showPopup: function () {
       this.showModal = true;
-    },
-    getSelectedOption: function(){
+      this.exportedCallback(false);
+
        for (let i = 0; i < this.options.length; i++) {
-         if(this.options[i].selected){
-           return this.options[i].id;
+         let option = this.options[i];
+         if(option.selected){
+           if(option.supportsCsv){
+             this.disableExportormatPicker = false;
+           }
+           else{
+             this.disableExportormatPicker = true;
+           }
          }
        }
-       return 0;
+    },
+    getSelectedOption: function () {
+      for (let i = 0; i < this.options.length; i++) {
+        if (this.options[i].selected) {
+          return this.options[i].id;
+        }
+      }
+      return 0;
     },
     selectionChanged: function (entry) {
       for (let i = 0; i < this.options.length; i++) {
         if (this.options[i].title === entry.title) {
           this.options[i].selected = true;
+          if (!this.options[i].supportsCsv) {
+            this.exportFileFormat = "xlsx";
+            this.disableExportormatPicker = true;
+          }
+          else{
+            this.disableExportormatPicker = false;
+          }
         } else {
           this.options[i].selected = false;
         }
@@ -97,6 +130,7 @@ export default {
 .export-options-row {
   margin: 4px auto 8px auto;
   display: flex;
+  height: 144px;
   // justify-content: center;
 }
 
@@ -133,7 +167,7 @@ export default {
   border-top: 2px solid $export-header-border-color;
   border-bottom: 2px solid $export-header-border-color;
   padding: 16px;
-  height: 180px;
+  height: 224px;
 }
 
 .modal-default-button {
@@ -181,5 +215,21 @@ export default {
   color: $icon-color;
   background-color: white;
   font-size: 0.76rem;
+}
+
+.lbl-export-format{
+  font-size: .95rem;
+}
+
+select{
+  width: 198px;
+  padding: 4px 0px;
+  margin: 2px 0px;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 4px;
+}
+
+select:disabled{
+  background-color: rgb(245, 245, 245);
 }
 </style>

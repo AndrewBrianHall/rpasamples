@@ -186,9 +186,13 @@ export default class DataCollection {
         return this._opportunities.length;
     }
 
-    exportData(formatOption) {
+    exportData(formatOptions) {
         let report = new ExcelReport(this._opportunities);
-        report.exportDataOnly(this.exportColumns);
+        if (formatOptions.option === 0) {
+            report.exportByStage(this.exportColumns);
+        } else {
+            report.exportDataOnly(this.exportColumns, formatOptions.fileFormat);
+        }
     }
 
     sortOpportunities(col) {
@@ -233,9 +237,7 @@ class ExcelReport {
         };
     }
 
-    exportDataOnly(columns) {
-        this.wb.SheetNames.push("Report");
-
+    _addSheet(sheetName, opportunities, columns) {
         // let columns = this.exportColumns;
         let ws_data = [];
         let headers = [];
@@ -248,17 +250,17 @@ class ExcelReport {
 
         ws_data.push(headers);
 
-        for (let row = 0; row < this._opportunities.length; row++) {
+        for (let row = 0; row < opportunities.length; row++) {
             let newRow = [];
             for (let col = 0; col < columns.length; col++) {
-                const rowData = this._opportunities[row];
+                const rowData = opportunities[row];
                 let cellValue = rowData[columns[col].property];
                 let cellLength = cellValue.toString().length;
 
                 if (columns[col].columnType === columnTypes.Price) {
                     // cellValue = 10000;
                     newRow.push({ t: 'n', v: cellValue, z: `"${rowData.currency}" #,##0.00;"${rowData.currency}" -#,##0.00` });
-                    cellLength = new Money(cellValue, 2, this._opportunities[row].currency).displayWithCurrency.length;
+                    cellLength = new Money(cellValue, 2, opportunities[row].currency).displayWithCurrency.length;
                 } else if (columns[col].columnType === columnTypes.Number) {
                     newRow.push({ t: 'n', v: cellValue });
                 } else {
@@ -281,8 +283,56 @@ class ExcelReport {
 
         let ws = XLSX.utils.aoa_to_sheet(ws_data);
         ws['!cols'] = wscols;
-        this.wb.Sheets["Report"] = ws;
-
-        XLSX.writeFile(this.wb, `Opportunities ${this.now.getFullYear()}-${this.now.getMonth()}-${this.now.getDate()}.xlsx`);
+        this.wb.SheetNames.push(sheetName);
+        this.wb.Sheets[sheetName] = ws;
     }
+
+    _exportExcel() {
+        XLSX.writeFile(this.wb, `Opportunities ${this.now.getFullYear()}-${this.now.getMonth() + 1}-${this.now.getDate()}.xlsx`);
+    }
+
+
+    exportDataOnly(columns, fileFormat) {
+        let sheetName = "Opportunities";
+        this._addSheet(sheetName, this._opportunities, columns);
+
+        if (fileFormat === "xlsx") {
+            this._exportExcel();
+        } else {
+            XLSX.writeFile(this.wb, `Opportunities ${this.now.getFullYear()}-${this.now.getMonth() + 1}-${this.now.getDate()}.csv`, { bookType: "csv" });
+        }
+    }
+
+    _getDistinctStages() {
+        let stages = {};
+        for (let i = 0; i < this._opportunities.length; i++) {
+            let stage = this._opportunities[i].stage;
+            if (stages[stage] === undefined) {
+                stages[stage] = stage;
+            }
+        }
+        return Object.values(stages);
+    }
+
+    _filterOpportunitiesByStage(stage) {
+        let filtered = [];
+        for (let i = 0; i < this._opportunities.length; i++) {
+            let opportunity = this._opportunities[i];
+            if (opportunity.stage === stage) {
+                filtered.push(opportunity);
+            }
+        }
+        return filtered;
+    }
+
+    exportByStage(columns) {
+        let stages = this._getDistinctStages();
+        stages.forEach(stage => {
+            let opportunitiesAtStage = this._filterOpportunitiesByStage(stage);
+            this._addSheet(stage, opportunitiesAtStage, columns);
+        });
+        this._exportExcel();
+    }
+
+
 }

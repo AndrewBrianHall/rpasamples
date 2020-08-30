@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ExportPopup ref="exportPopup" v-bind:showModal="showExportPopup" v-bind:data="data" />
+    <ExportPopup ref="exportPopup" v-bind:showModal="showExportPopup" v-bind:data="data" v-bind:exportedCallback="setExportStatus" />
     <div class="main-report">
       <ReportTitle v-bind:exportExcel="exportExcel" />
       <Opportunities v-bind:data="data" />
@@ -42,6 +42,9 @@ export default {
       let popup = this.$refs.exportPopup;
       popup.showPopup();
     },
+    setExportStatus: function(exported){
+      this.showExportMessage = exported;
+    }
   },
 };
 </script>
