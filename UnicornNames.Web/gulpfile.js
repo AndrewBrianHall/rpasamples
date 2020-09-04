@@ -10,6 +10,8 @@ const uglify = require('gulp-uglify');
 var template = require('gulp-template');
 const htmlmin = require('gulp-htmlmin');
 var fs = require('fs');
+var header = require('gulp-header');
+const removeCode = require('gulp-remove-code');
 
 var workingDir = "./obj/";
 var outputDir = "./bld/";
@@ -38,11 +40,12 @@ gulp.task('inline', function() {
 
 
 gulp.task('pack-js', function() {
-    var key = JSON.parse(fs.readFileSync(keyFile));
+    // var key = JSON.parse(fs.readFileSync(keyFile));
 
-    return gulp.src(['appinsights.js', 'unicornname.js'])
-        .pipe(concat('unicornname.js'))
-        .pipe(template(key))
+    return gulp.src(['unicornname.js'])
+        .pipe(removeCode({ production: true }))
+        // .pipe(concat('unicornname.js'))
+        // .pipe(template(key))
         .pipe(gulp.dest(workingDir));
 });
 
@@ -54,4 +57,17 @@ gulp.task('copy', function() {
         .pipe(gulpCopy(workingDir, { prefix: 1 }))
 });
 
+gulp.task('add-text-to-beginning', function() {
+    return gulp.src(outputDir + 'main.html')
+        .pipe(header('<!-- saved from url=(0016)http://localhost -->'))
+        .pipe(gulp.dest(outputDir));
+});
+
+gulp.task('remove-code', function() {
+    return gulp.src(['unicornname.js'])
+        .pipe(removeCode({ production: true }))
+        .pipe(gulp.dest(workingDir));
+});
+
 gulp.task('default', gulp.series('pack-js', 'copy', 'inline', 'minhtml'));
+gulp.task('local', gulp.series('pack-js', 'copy', 'inline', 'minhtml', 'add-text-to-beginning'));

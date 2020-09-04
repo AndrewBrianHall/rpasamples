@@ -50,7 +50,7 @@ var outputField = "lblUnicornName";
 var collapseClass = "collapse";
 var progressElement = "pgrIndicator";
 var placeholderClass = "text-placeholder";
-var delay = 400;
+var delay = 325;
 
 function getUnicornName() {
     var name = document.getElementById(nameField).value;
@@ -106,10 +106,14 @@ function completed() {
 
     showInputTable();
 
+    //removeIf(production)
     if (!isLocal()) {
+        //endRemoveIf(production)
         document.getElementById(nameField).value = '';
         document.getElementById(monthField).value = '';
+        //removeIf(production)
     }
+    //endRemoveIf(production)
 }
 
 function setUnicornName(name, month) {
@@ -153,6 +157,7 @@ function checkValue(value) {
     return true;
 }
 
+//removeIf(production)
 function addTestValues() {
     document.getElementById(nameField).value = "Andrew";
     document.getElementById(monthField).value = "nov";
@@ -173,3 +178,4 @@ function isLocal() {
 if (isLocal()) {
     document.addEventListener("DOMContentLoaded", addTestValues, false);
 }
+//endRemoveIf(production)
