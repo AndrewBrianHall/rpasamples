@@ -1,0 +1,23 @@
+.unicorn-logo {
+    width: 80px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.col-large,
+.col-med-lg {
+    display: inline-block;
+    width: 260px;
+    vertical-align: top;
+}
+
+.collapse {
+    height: 60px;
+}
+
+body {
+    font-size: 16px;
+}

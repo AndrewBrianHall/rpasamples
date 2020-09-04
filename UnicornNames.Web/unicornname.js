@@ -1,45 +1,45 @@
 var nameTable = {
-    "A": "Productive",
-    "B": "Vibrant",
-    "C": "Moonbeam",
-    "D": "Energetic",
-    "E": "Brave",
-    "F": "Whirlwind",
-    "G": "Twilight",
-    "H": "Glimmer",
-    "I": "Joyful",
-    "J": "Sunbeam",
-    "K": "Emerald",
-    "L": "Optimistic",
-    "M": "Delightful",
-    "N": "Confetti",
-    "O": "Breezy",
-    "P": "Sparkle",
-    "Q": "Butterfly",
-    "R": "Daffodil",
-    "S": "Fancy",
-    "T": "Cheerful",
-    "U": "Creative",
-    "V": "Sprinkle",
-    "W": "Brilliant",
-    "X": "Amethyst",
-    "Y": "Gracious",
-    "Z": "Bumblebee"
+    A: "Radiant",
+    B: "Vibrant",
+    C: "Moonbeam",
+    D: "Energetic",
+    E: "Brave",
+    F: "Whirlwind",
+    G: "Twilight",
+    H: "Glimmer",
+    I: "Joyful",
+    J: "Sunbeam",
+    K: "Emerald",
+    L: "Optimistic",
+    M: "Delightful",
+    N: "Confetti",
+    O: "Breezy",
+    P: "Sparkle",
+    Q: "Butterfly",
+    R: "Daffodil",
+    S: "Fancy",
+    T: "Cheerful",
+    U: "Creative",
+    V: "Sprinkle",
+    W: "Brilliant",
+    X: "Amethyst",
+    Y: "Gracious",
+    Z: "Bumblebee"
 };
 
 var birthdayTable = {
-    "jan": "Crystal-Dazzler",
-    "feb": "Twinkle-Sweet",
-    "mar": "Glitter-Blossom",
-    "apr": "Nimble-Flower",
-    "may": "Snowflake-Dream",
-    "jun": "Cloud-Jumper",
-    "jul": "Raindrop-Mist",
-    "aug": "Summer-Dancer",
-    "sep": "Moon-Clover",
-    "oct": "Feather-Wind",
-    "nov": "Starshine-Blazer",
-    "dec": "Frost-Fire"
+    jan: "Crystal-Dazzler",
+    feb: "Twinkle-Sweet",
+    mar: "Glitter-Blossom",
+    apr: "Nimble-Flower",
+    may: "Snowflake-Dream",
+    jun: "Cloud-Jumper",
+    jul: "Raindrop-Mist",
+    aug: "Summer-Dancer",
+    sep: "Moon-Clover",
+    oct: "Feather-Wind",
+    nov: "Starshine-Blazer",
+    dec: "Frost-Fire"
 }
 
 var Months = Array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
@@ -50,7 +50,7 @@ var outputField = "lblUnicornName";
 var collapseClass = "collapse";
 var progressElement = "pgrIndicator";
 var placeholderClass = "text-placeholder";
-var delay = 325;
+var delay = 300;
 
 function getUnicornName() {
     var name = document.getElementById(nameField).value;

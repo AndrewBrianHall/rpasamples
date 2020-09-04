@@ -18,7 +18,7 @@
 
 .col-med {
     display: inline-block;
-    width: 230px;
+    width: 228px;
     vertical-align: top;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .collapse {
-    visibility: collapse;
+    visibility: hidden;
     width: 0px;
 }
 
