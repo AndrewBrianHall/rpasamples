@@ -65,7 +65,7 @@ $border-color: rgb(175, 175, 175);
   font-family: $font-families;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
