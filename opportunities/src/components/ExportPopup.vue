@@ -124,7 +124,7 @@ export default {
 @import "../styles/export.scss";
 
 .options-header {
-  font-size: 1.15em;
+  font-size: 1.125em;
   font-weight: 600;
 }
 

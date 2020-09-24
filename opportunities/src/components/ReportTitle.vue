@@ -47,7 +47,7 @@ div.report-icon {
 }
 
 .title-text {
-  font-size: 1.3em;
+  font-size: 1.25em;
   font-weight: 600;
 }
 </style>
