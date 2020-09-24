@@ -12,7 +12,6 @@
     </div>
     <div class="export-option-title">{{ entry.title }}</div>
     <div class="export-option-body">{{ entry.description }}</div>
-    <div>{{`${publicPath}assets/white-check.png`}}</div>
   </div>
 </template>
 
