@@ -12,7 +12,7 @@ const header = require('gulp-header');
 const rename = require("gulp-rename");
 
 var workingDir = "./obj/";
-var outputDir = "./bld/";
+var outputDir = "./dist/";
 const keyFile = "keys.json";
 
 gulp.task('minhtml', () => {
@@ -40,7 +40,7 @@ gulp.task('inline', function() {
 gulp.task('pack-js', function() {
     // var key = JSON.parse(fs.readFileSync(keyFile));
 
-    return gulp.src(['unicornname.js'])
+    return gulp.src(['*.js'])
         .pipe(removeCode({ production: true }))
         // .pipe(concat('unicornname.js'))
         // .pipe(template(key))
@@ -71,11 +71,11 @@ gulp.task('create-web', function() {
 
 gulp.task('inject-local', function() {
     let css = gulp.src(['local.css']);
-    return gulp.src(workingDir + 'main.html')
+    return gulp.src(workingDir + 'index.html')
         .pipe(injectString.before('</head>', '<link rel="stylesheet" href="local.css" />'))
         .pipe(gulp.dest(workingDir));
 });
 
 gulp.task('web', gulp.series('pack-js', 'copy', 'inline', 'minhtml', 'create-web'));
-gulp.task('local', gulp.series('pack-js', 'copy', 'inject-local', 'inline', 'minhtml', 'create-local'));
+gulp.task('local', gulp.series('pack-js', 'copy', 'inline', 'minhtml', 'create-local'));
 gulp.task('default', gulp.series('web', 'local'));

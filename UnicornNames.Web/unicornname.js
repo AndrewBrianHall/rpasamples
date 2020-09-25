@@ -1,4 +1,4 @@
-var nameTable = {
+let nameTable = {
     A: "Radiant",
     B: "Vibrant",
     C: "Moonbeam",
@@ -27,7 +27,7 @@ var nameTable = {
     Z: "Bumblebee"
 };
 
-var birthdayTable = {
+let birthdayTable = {
     jan: "Crystal-Dazzler",
     feb: "Twinkle-Sweet",
     mar: "Glitter-Blossom",
@@ -42,19 +42,19 @@ var birthdayTable = {
     dec: "Frost-Fire"
 }
 
-var Months = Array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
+let Months = Array('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec');
 
-var nameField = "txtName";
-var monthField = "selMonth";
-var outputField = "lblUnicornName";
-var collapseClass = "collapse";
-var progressElement = "pgrIndicator";
-var placeholderClass = "text-placeholder";
-var delay = 300;
+let nameField = "txtName";
+let monthField = "selMonth";
+let outputField = "lblUnicornName";
+let collapseClass = "collapse";
+let progressElement = "pgrIndicator";
+let placeholderClass = "text-placeholder";
+let delay = 300;
 
 function getUnicornName() {
-    var name = document.getElementById(nameField).value;
-    var month = getBirthMonth();
+    let name = document.getElementById(nameField).value;
+    let month = getBirthMonth();
 
     if (!checkValue(name)) {
         alert("Enter your name");
@@ -71,10 +71,10 @@ function getUnicornName() {
 }
 
 function getBirthMonth() {
-    var month = document.getElementById(monthField).value;
+    let month = document.getElementById(monthField).value;
     if (month === '') {
-        var monthNum = 0;
-        var name = document.getElementById(nameField).value;
+        let monthNum = 0;
+        let name = document.getElementById(nameField).value;
         try {
             monthNum = name.charCodeAt(1) % 12;
         } catch (error) {
@@ -87,8 +87,8 @@ function getBirthMonth() {
 }
 
 function inProgress() {
-    var nameEl = document.getElementById(outputField);
-    var progressEl = document.getElementById(progressElement)
+    let nameEl = document.getElementById(outputField);
+    let progressEl = document.getElementById(progressElement)
     nameEl.classList.add(collapseClass);
     progressEl.classList.remove(collapseClass);
     progressEl.classList.add("spin");
@@ -96,8 +96,8 @@ function inProgress() {
 }
 
 function completed() {
-    var nameEl = document.getElementById(outputField);
-    var progressEl = document.getElementById(progressElement)
+    let nameEl = document.getElementById(outputField);
+    let progressEl = document.getElementById(progressElement)
 
     nameEl.classList.remove(collapseClass);
     nameEl.classList.remove(placeholderClass)
@@ -116,28 +116,56 @@ function completed() {
     //endRemoveIf(production)
 }
 
-function setUnicornName(name, month) {
-    var firstLetter = name.substring(0, 1).toUpperCase();
-    var unicornName = nameTable[firstLetter] + " " + birthdayTable[month];
+function isASCII(str) {
+    return /^[\x00-\x7F]*$/.test(str);
+}
 
-    var output = document.getElementById(outputField);
+function getUnicornFirstName(inputName) {
+    let name = nameTable["A"];
+
+    try {
+        //It's a number, convert to a letter
+        if (!isNaN(inputName)) {
+            inputName = String.fromCharCode(65 + (inputName % 26));
+        }
+
+        let firstLetter = inputName.substring(0, 1).toUpperCase();
+        if (!isASCII(firstLetter)) {
+            firstLetter = String.fromCharCode(65 + (firstLetter.charCodeAt(0) % 26))
+        }
+        if (nameTable[firstLetter] !== undefined) {
+            name = nameTable[firstLetter];
+        }
+
+    } catch (err) {
+
+    }
+
+    return name;
+}
+
+function setUnicornName(name, month) {
+    let firstName = getUnicornFirstName(name);
+    let unicornName = firstName + " " + birthdayTable[month];
+
+    let output = document.getElementById(outputField);
     output.innerText = unicornName;
 }
 
 function hideInputTable() {
-    var table = document.getElementById('tblDisplayInput');
+    let table = document.getElementById('tblDisplayInput');
 
     table.classList.add('collapse');
 }
 
 function showInputTable() {
-    var name = document.getElementById(nameField);
-    var monthDropdown = document.getElementById(monthField);
-    var monthStr = monthDropdown.options[monthDropdown.selectedIndex].text;
+    let name = document.getElementById(nameField);
+    let monthDropdown = document.getElementById(monthField);
+    let monthStr = monthDropdown.options[monthDropdown.selectedIndex].text;
 
-    var table = document.getElementById('tblDisplayInput');
-    var nameLable = document.getElementById('lblOriginalName');
-    var bdayLabel = document.getElementById('lblOriginalBirthday');
+    let table = document.getElementById('tblDisplayInput');
+    let nameLable = document.getElementById('lblOriginalName');
+    let bdayLabel = document.getElementById('lblOriginalBirthday');
 
     if (monthDropdown.value === '') {
         monthStr = '';
@@ -166,8 +194,8 @@ function addTestValues() {
 function isLocal() {
     try {
         // IE doesn't support .startsWith
-        var fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
-        var queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
+        let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
+        let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
         console.log(window.location.search);
         return fromFile && queryOverride;
     } catch (error) {
