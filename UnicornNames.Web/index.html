@@ -7,52 +7,51 @@
         Unicorn Name Generator
     </title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="local.css" />
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="background.css" />
 </head>
 
 <body>
     <img class="uipath-logo" src="ui-path-connect-ent-pref-white.svg"></img>
-    <div class="gray-half-circle half1"></div>
-    <div class="gray-half-circle gray-half-circle-right half2"></div>
-    <div class="gray-half-circle half-circle-up half3"></div>
-    <div class="orange-half-down down-circ1"></div>
-    <div class="orange-half-down down-circ2"></div>
-    <div class="orange-half-down left-half-circ left-circ1"></div>
-    <div class="orange-circle circ1"></div>
-    <div class="orange-circle circ2"></div>
-    <div class="orange-circle circ3"></div>
-    <div class="orange-circle circ4"></div>
-    <div class="orange-circle circ5"></div>
-    <div class="orange-circle circ6"></div>
-    <div class="orange-circle circ7"></div>
-    <div class="gray-circle gray-circ1"></div>
-    <div class="gray-circle gray-circ2"></div>
-    <div class="gray-circle gray-circ3"></div>
-    <div class="gray-circle gray-circ4"></div>
-    <div class="gray-circle gray-circ5"></div>
-    <div class="gray-circle gray-circ6"></div>
-    <div class="gray-circle gray-circ7"></div>
-    <div class="gray-circle gray-circ8"></div>
-    <div class="gray-circle gray-circ9"></div>
-    <div class="gray-circle gray-circ10"></div>
-    <div class="orange-rect-vert rect1"></div>
-    <div class="orange-rect-vert rect2"></div>
-    <div class="orange-rect-vert rect-horiz rect3"></div>
-    <div class="orange-rect-vert rect-horiz rect4"></div>
-    <div class="gray-rect-horiz rect5"></div>
-    <div class="gray-rect-horiz rect6"></div>
+    <div class="bg-shape-base gray-half-circle half1"></div>
+    <div class="bg-shape-base gray-half-circle gray-half-circle-right half2"></div>
+    <div class="bg-shape-base gray-half-circle half-circle-up half3"></div>
+    <div class="bg-shape-base orange-half-down down-circ1"></div>
+    <div class="bg-shape-base orange-half-down down-circ2"></div>
+    <div class="bg-shape-base orange-half-down left-half-circ left-circ1"></div>
+    <div class="bg-shape-base orange-circle circ1"></div>
+    <div class="bg-shape-base orange-circle circ2"></div>
+    <div class="bg-shape-base orange-circle circ3"></div>
+    <div class="bg-shape-base orange-circle circ4"></div>
+    <div class="bg-shape-base orange-circle circ5"></div>
+    <div class="bg-shape-base orange-circle circ6"></div>
+    <div class="bg-shape-base orange-circle circ7"></div>
+    <div class="bg-shape-base gray-circle gray-circ1"></div>
+    <div class="bg-shape-base gray-circle gray-circ2"></div>
+    <div class="bg-shape-base gray-circle gray-circ3"></div>
+    <div class="bg-shape-base gray-circle gray-circ4"></div>
+    <div class="bg-shape-base gray-circle gray-circ5"></div>
+    <div class="bg-shape-base gray-circle gray-circ6"></div>
+    <div class="bg-shape-base gray-circle gray-circ7"></div>
+    <div class="bg-shape-base gray-circle gray-circ8"></div>
+    <div class="bg-shape-base gray-circle gray-circ9"></div>
+    <div class="bg-shape-base gray-circle gray-circ10"></div>
+    <div class="bg-shape-base orange-rect-vert rect1"></div>
+    <div class="bg-shape-base orange-rect-vert rect2"></div>
+    <div class="bg-shape-base orange-rect-vert rect-horiz rect3"></div>
+    <div class="bg-shape-base orange-rect-vert rect-horiz rect4"></div>
+    <div class="bg-shape-base gray-rect-horiz rect5"></div>
+    <div class="bg-shape-base gray-rect-horiz rect6"></div>
     <div class="searching-bot"></div>
     <div class="page-container">
         <div class="main-title">Unicorn Name Generator</div>
         <div class="sub-title">This is part of the UiPath Studio Onboarding Tutorial</div>
         <div class="input-block">
             <div class="label">What is your name?*</div>
-            <input class="text-input" type="text" id="txtName" placeholder="Enter your name" onkeyup="formFieldChanged()">
+            <input class="text-input" type="text" id="txtName" placeholder="Enter your name" onkeyup="formFieldChanged()" onchange="formFieldChanged()">
             <div class="label-error hidden" id="lblNameError">Enter your name</div>
         </div>
-        <div class="input-block">
+        <div class="input-block container">
             <div class="label">What is your birth month?</div>
             <select id="selMonth" onchange="formFieldChanged()" required>
                 <option value='' selected>Select your birth month</option>
@@ -71,15 +70,15 @@
             </select>
             <div class="label-error hidden" id="lblMonthError">Enter your birth month</div>
         </div>
-        <div class="button-container">
+        <div class="button-container container">
             <button class="submit-button disabled-button" onclick="getUnicornName()" id="getNameButton">Get Unicorn Name</button>
         </div>
-        <div class="output-block" id="outputBlock">
+        <div class="output-block container hidden" id="outputBlock">
             <div class="output-block-title">This is your unicorn name</div>
             <div class="name-container">
                 <img src="rocketunicorn-80.png" id="pgrIndicator" class="unicorn-spinner">
                 <div class="output-text">
-                    <div id="lblUnicornName" class="text-placeholder">[Unicorn Name]</div>
+                    <div id="lblUnicornName" class="output-text">[Unicorn Name]</div>
 
                     <div class="lbl-orig-values"><span class="lbl-orig">Name:</span><span id="lblOriginalName">Name entered</span></div>
                     <div class="lbl-orig-values"><span class="lbl-orig">Month:</span><span id="lblOriginalBirthday">Birthday entered</span></div>

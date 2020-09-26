@@ -233,23 +233,24 @@ function checkValue(value) {
 
 //removeIf(production)
 function addTestValues() {
-    // document.getElementById(nameField).value = "Andrew";
-    document.getElementById(monthField).value = "";
+    document.getElementById(nameField).value = "Andrew";
+    document.getElementById(monthField).value = "nov";
+    enableButton();
 }
 
-// function isLocal() {
-//     try {
-//         // IE doesn't support .startsWith
-//         let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
-//         let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
-//         console.log(window.location.search);
-//         return fromFile && queryOverride;
-//     } catch (error) {
-//         return false;
-//     }
-// }
+function isLocal() {
+    try {
+        // IE doesn't support .startsWith
+        let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
+        let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
+        console.log(window.location.search);
+        return fromFile && queryOverride;
+    } catch (error) {
+        return false;
+    }
+}
 
-// if (isLocal()) {
-document.addEventListener("DOMContentLoaded", addTestValues, false);
-// }
+if (isLocal()) {
+    document.addEventListener("DOMContentLoaded", addTestValues, false);
+}
 //endRemoveIf(production)
