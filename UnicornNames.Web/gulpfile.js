@@ -10,6 +10,8 @@ const injectString = require('gulp-inject-string');
 const fs = require('fs');
 const header = require('gulp-header');
 const rename = require("gulp-rename");
+const imageDataURI = require('gulp-image-inline');
+const concat = require('gulp-concat');
 
 var workingDir = "./obj/";
 var outputDir = "./dist/";
@@ -21,8 +23,16 @@ gulp.task('minhtml', () => {
         .pipe(gulp.dest(workingDir));
 });
 
+gulp.task('create-inline-image-css', function() {
+    return gulp.src('./images/*')
+        .pipe(imageDataURI())
+        .pipe(concat('inline-background.css'))
+        .pipe(gulp.dest(workingDir));
+});
+
 gulp.task('inline', function() {
-    return gulp.src(workingDir + '*.html')
+    return gulp.src([workingDir + '*.html'])
+        .pipe(injectString.before('</head>', '<link rel="stylesheet" href="inline-background.css" />'))
         .pipe(inline({
             base: workingDir,
             js: minify({
@@ -37,13 +47,11 @@ gulp.task('inline', function() {
 });
 
 
-gulp.task('pack-js', function() {
+gulp.task('prepare', function() {
     // var key = JSON.parse(fs.readFileSync(keyFile));
 
     return gulp.src(['*.js'])
         .pipe(removeCode({ production: true }))
-        // .pipe(concat('unicornname.js'))
-        // .pipe(template(key))
         .pipe(gulp.dest(workingDir));
 });
 
@@ -51,7 +59,7 @@ gulp.task('copy', function() {
     var options = {};
 
     return gulp
-        .src(['*.html', '*.png', '*.css'])
+        .src(['*.html', '*.png', '*.css', '*.svg'])
         .pipe(gulpCopy(workingDir, { prefix: 1 }))
 });
 
@@ -76,6 +84,6 @@ gulp.task('inject-local', function() {
         .pipe(gulp.dest(workingDir));
 });
 
-gulp.task('web', gulp.series('pack-js', 'copy', 'inline', 'minhtml', 'create-web'));
-gulp.task('local', gulp.series('pack-js', 'copy', 'inline', 'minhtml', 'create-local'));
+gulp.task('web', gulp.series('prepare', 'create-inline-image-css', 'copy', 'inline', 'minhtml', 'create-web'));
+gulp.task('local', gulp.series('prepare', 'create-inline-image-css', 'copy', 'inline', 'minhtml', 'create-local'));
 gulp.task('default', gulp.series('web', 'local'));

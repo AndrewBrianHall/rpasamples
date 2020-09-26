@@ -14,7 +14,7 @@
 }
 
 .gray-half-circle {
-    background-image: url("./images/gray-half-circle-left.svg");
+    background-image: url("./images/gray-half-circle.svg");
     background-repeat: no-repeat;
     width: 51px;
     height: 101px;
@@ -35,17 +35,17 @@
     height: 76px;
 }
 
-.gray-rect-horiz {
+.gray-rect {
     background-image: url("./images/gray-rect.svg");
     background-repeat: no-repeat;
     width: 76px;
     height: 26px;
 }
 
-.orange-half-down {
+.orange-half-circle {
     width: 101px;
     height: 51px;
-    background-image: url("./images/orange-half-circ-down.svg");
+    background-image: url("./images/orange-half-circle.svg");
     background-repeat: no-repeat;
 }
 
