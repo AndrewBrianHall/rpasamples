@@ -105,7 +105,7 @@ body {
     margin-top: 10px;
     box-shadow: none;
     border: 0;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1em;
 }
 
@@ -118,6 +118,7 @@ body {
     color: rgb(120, 120, 120);
     background-color: rgb(220, 220, 220);
     border: 1px solid rgb(120, 120, 120);
+    font-weight: 400;
 }
 
 .text-input {

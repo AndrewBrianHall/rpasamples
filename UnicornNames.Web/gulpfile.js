@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const minify = require('gulp-minify');
 const gulpCopy = require('gulp-copy');
 const inline = require('gulp-inline');
+const inline_download = require('gulp-inline-download');
 const minifyCss = require('gulp-minify-css');
 const template = require('gulp-template');
 const htmlmin = require('gulp-htmlmin');
@@ -13,10 +14,17 @@ const rename = require("gulp-rename");
 const imageDataURI = require('gulp-image-inline');
 const concat = require('gulp-concat');
 const replace = require('gulp-string-replace');
+const inlineFonts = require('gulp-inline-fonts');
+var download = require("gulp-download-files");
+const escapeStringRegexp = require('escape-string-regexp');
+const scan = require('gulp-scan');
+const merge = require('merge-stream');
 
 var workingDir = "./obj/";
 var outputDir = "./dist/";
 const keyFile = "keys.json";
+const remote_font = "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap";
+const local_font_file = "open-sans.css";
 
 gulp.task('minhtml', () => {
     return gulp.src(workingDir + '*.html')
@@ -32,8 +40,11 @@ gulp.task('create-inline-image-css', function() {
 });
 
 gulp.task('inline', function() {
+    const remote_font_to_replace = escapeStringRegexp(remote_font);
+
     return gulp.src([workingDir + '*.html'])
         .pipe(injectString.before('</head>', '<link rel="stylesheet" href="inline-background.css" />'))
+        .pipe(replace(remote_font_to_replace, local_font_file))
         .pipe(inline({
             base: workingDir,
             js: minify({
@@ -44,17 +55,61 @@ gulp.task('inline', function() {
             }),
             css: [minifyCss]
         }))
+        .pipe(inline_download({
+            uglify: {
+                css: {}
+            }
+        }))
         .pipe(gulp.dest(workingDir));
 });
 
 
-// gulp.task('prepare', function() {
-//     // var key = JSON.parse(fs.readFileSync(keyFile));
 
-//     return gulp.src(['*.js'])
-//         .pipe(removeCode({ production: true }))
-//         .pipe(gulp.dest(workingDir));
-// });
+gulp.task('download-top-level-font', function() {
+    return download(remote_font)
+        .pipe(rename(local_font_file))
+        .pipe(gulp.dest(workingDir));
+});
+
+gulp.task('download-individual-fonts', function() {
+    let stream = merge();
+
+    gulp.src([workingDir + local_font_file])
+        .pipe(scan({
+            term: /https:\/\/.*\.ttf/ig,
+            fn: function(match) {
+                stream.add(download(match)
+                    .pipe(gulp.dest(workingDir + 'fonts/'))
+                );
+
+            }
+        }));
+
+    return stream;
+});
+
+gulp.task('convert-font-files', function() {
+    const fontName = 'Open Sans';
+
+    let downloadedFiles = [
+        { weight: 400, file: 'mem8YaGs126MiZpBA-U1Ug.ttf' },
+        { weight: 600, file: 'mem5YaGs126MiZpBA-UNirk-VQ.ttf' },
+        { weight: 700, file: 'mem5YaGs126MiZpBA-UN7rg-VQ.ttf' }
+    ];
+
+    let fontStream = merge();
+
+    downloadedFiles.forEach(function(file) {
+        fontStream.add(gulp.src([workingDir + `fonts/${file.file}`])
+            .pipe(inlineFonts({ name: `${fontName}`, weight: file.weight, formats: ['ttf'] }))
+        );
+    });
+
+    return fontStream.pipe(concat(local_font_file))
+        .pipe(gulp.dest(workingDir));
+});
+
+gulp.task('inline-fonts', gulp.series('download-top-level-font', 'download-individual-fonts', 'convert-font-files'))
 
 gulp.task('remove-background-urls', function() {
     return gulp.src('*.css')
@@ -92,6 +147,6 @@ gulp.task('inject-local', function() {
         .pipe(gulp.dest(workingDir));
 });
 
-gulp.task('web', gulp.series('create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-web'));
-gulp.task('local', gulp.series('create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-local'));
+gulp.task('web', gulp.series('inline-fonts', 'create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-web'));
+gulp.task('local', gulp.series('inline-fonts', 'create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-local'));
 gulp.task('default', gulp.series('web', 'local'));
