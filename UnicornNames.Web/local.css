@@ -82,6 +82,10 @@ body {
     margin: auto 16px auto 16px;
 }
 
+.button-container {
+    margin: 28px auto 8px auto;
+}
+
 .submit-button {
     background-color: rgb(0, 75, 255);
     color: white;

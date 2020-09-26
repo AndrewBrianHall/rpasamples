@@ -1,3 +1,7 @@
+img {
+    overflow: hidden;
+}
+
 .searching-bot {
     position: fixed;
     width: 165px;
@@ -5,21 +9,44 @@
     bottom: 16px;
     right: 16px;
     background-image: url("./images/searching-bot.png");
+    border-style: none;
+}
+
+.gray-half-circle {
+    position: absolute;
+    background-image: url("./images/gray-half-circle-left.svg");
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 238px;
+}
+
+.gray-half-circle-right {
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.half-circle-up {
+    transform: rotate(90deg);
 }
 
 .half1 {
-    position: absolute;
     left: 11.88%;
     right: 84.63%;
     top: 27.17%;
     bottom: 61.65%;
 }
 
-.gray-half-circle {
-    background-image: url("./images/gray-half-circle-left.svg");
-    background-repeat: no-repeat;
-    width: 120px;
-    height: 238px
+.half2 {
+    left: 31.83%;
+    right: 64.68%;
+    top: 41%;
+    bottom: 47.83%;
+}
+
+.half3 {
+    left: 75.76%;
+    right: 21.75%;
+    top: 86.78%;
+    bottom: 3.95%;
 }
 
 .circ1 {
@@ -76,6 +103,8 @@
     /* background: #FA4616; */
     background-image: url("./images/orange-circle.svg");
     background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
 }
 
 .orange-rect-vert {
@@ -85,6 +114,18 @@
     background-repeat: no-repeat;
     width: 26px;
     height: 76px;
+}
+
+.gray-rect-horiz {
+    position: absolute;
+    background-image: url("./images/gray-rect.svg");
+    background-repeat: no-repeat;
+    width: 76px;
+    height: 26px;
+}
+
+.rect-horiz {
+    transform: rotate(-90deg);
 }
 
 .rect1 {
@@ -99,6 +140,34 @@
     right: 88.66%;
     top: 69.05%;
     bottom: 22.57%;
+}
+
+.rect3 {
+    left: 5.21%;
+    right: 93.05%;
+    top: 40.79%;
+    bottom: 50.83%;
+}
+
+.rect4 {
+    left: 60.82%;
+    right: 37.43%;
+    top: 87.02%;
+    bottom: 4.96%;
+}
+
+.rect5 {
+    left: 64%;
+    right: 40.25%;
+    top: 36.78%;
+    bottom: 54.84%;
+}
+
+.rect6 {
+    left: 75.82%;
+    right: 22.43%;
+    top: 75.33%;
+    bottom: 16.29%;
 }
 
 .orange-half-down {
@@ -121,4 +190,93 @@
     right: 4.15%;
     top: 78.37%;
     bottom: 10.46%;
+}
+
+.left-half-circ {
+    transform: rotate(90deg);
+}
+
+.left-circ1 {
+    left: 92.22%;
+    right: 4.29%;
+    top: 5.11%;
+    bottom: 83.71%;
+}
+
+.gray-circle {
+    position: absolute;
+    background-image: url("./images/gray-circle.svg");
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+}
+
+.gray-circ1 {
+    left: 3.47%;
+    right: 94.78%;
+    top: 16.67%;
+    bottom: 80.54%;
+}
+
+.gray-circ2 {
+    left: 33.33%;
+    right: 64.92%;
+    top: 20.11%;
+    bottom: 77.1%;
+}
+
+.gray-circ3 {
+    left: 18.82%;
+    right: 79.43%;
+    top: 44%;
+    bottom: 53.21%;
+}
+
+.gray-circ4 {
+    left: 25.42%;
+    right: 72.84%;
+    top: 66%;
+    bottom: 31.21%;
+}
+
+.gray-circ5 {
+    left: 7.85%;
+    right: 90.41%;
+    top: 79.44%;
+    bottom: 17.76%;
+}
+
+.gray-circ6 {
+    left: 29.17%;
+    right: 69.09%;
+    top: 86.78%;
+    bottom: 10.43%;
+}
+
+.gray-circ7 {
+    left: 57.15%;
+    right: 41.1%;
+    top: 81.33%;
+    bottom: 15.87%;
+}
+
+.gray-circ8 {
+    left: 47.18%;
+    right: 51.07%;
+    top: 94.89%;
+    bottom: 2.32%;
+}
+
+.gray-circ9 {
+    left: 71.46%;
+    right: 26.8%;
+    top: 18.11%;
+    bottom: 79.1%;
+}
+
+.gray-circ10 {
+    left: 79.79%;
+    right: 18.46%;
+    top: 58.56%;
+    bottom: 38.65%;
 }
