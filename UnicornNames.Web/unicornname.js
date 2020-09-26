@@ -54,14 +54,8 @@ let delay = 300;
 
 function formIsValid() {
     let name = document.getElementById(nameField).value;
-    let monthEl = document.getElementById(monthField);
-    let month = monthEl.value; //getBirthMonth();
-
-    monthEl.blur();
 
     if (!checkValue(name)) {
-        return false;
-    } else if (!checkValue(month)) {
         return false;
     }
 
@@ -88,25 +82,13 @@ function formFieldChanged() {
 
 function getUnicornName() {
     let name = document.getElementById(nameField).value;
-    let month = document.getElementById(monthField).value; //getBirthMonth();
+    let month = getBirthMonth();
 
-    let error = false;
     if (!checkValue(name)) {
         let el = document.getElementById("lblNameError");
         el.classList.remove("hidden");
-        error = true;
-    }
-    if (!checkValue(month)) {
-        let el = document.getElementById("lblMonthError");
-        el.classList.remove("hidden");
-        error = true;
-    }
-
-    if (error) {
         return;
     }
-
-
 
     inProgress();
     setUnicornName(name, month);
@@ -120,7 +102,7 @@ function getBirthMonth() {
         let monthNum = 0;
         let name = document.getElementById(nameField).value;
         try {
-            monthNum = name.charCodeAt(1) % 12;
+            monthNum = name.length() > 1 ? name.charCodeAt(1) % 12 : name.charCodeAt(0) % 12;
         } catch (error) {
             monthNum = name.length % 12;
         }
@@ -153,12 +135,12 @@ function completed() {
     showInputTable();
 
     //removeIf(production)
-    if (!isLocal()) {
-        //endRemoveIf(production)
-        document.getElementById(nameField).value = '';
-        document.getElementById(monthField).value = '';
-        //removeIf(production)
-    }
+    // if (!isLocal()) {
+    //endRemoveIf(production)
+    document.getElementById(nameField).value = '';
+    document.getElementById(monthField).value = '';
+    //removeIf(production)
+    // }
     //endRemoveIf(production)
 }
 
@@ -231,26 +213,26 @@ function checkValue(value) {
     return true;
 }
 
-//removeIf(production)
-function addTestValues() {
-    document.getElementById(nameField).value = "Andrew";
-    document.getElementById(monthField).value = "nov";
-    enableButton();
-}
+// //removeIf(production)
+// function addTestValues() {
+//     document.getElementById(nameField).value = "Andrew";
+//     document.getElementById(monthField).value = "nov";
+//     enableButton();
+// }
 
-function isLocal() {
-    try {
-        // IE doesn't support .startsWith
-        let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
-        let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
-        console.log(window.location.search);
-        return fromFile && queryOverride;
-    } catch (error) {
-        return false;
-    }
-}
+// function isLocal() {
+//     try {
+//         // IE doesn't support .startsWith
+//         let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
+//         let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
+//         console.log(window.location.search);
+//         return fromFile && queryOverride;
+//     } catch (error) {
+//         return false;
+//     }
+// }
 
-if (isLocal()) {
-    document.addEventListener("DOMContentLoaded", addTestValues, false);
-}
-//endRemoveIf(production)
+// if (isLocal()) {
+//     document.addEventListener("DOMContentLoaded", addTestValues, false);
+// }
+// //endRemoveIf(production)

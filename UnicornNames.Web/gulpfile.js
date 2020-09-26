@@ -57,7 +57,7 @@ gulp.task('inline', function() {
 // });
 
 gulp.task('remove-background-urls', function() {
-    return gulp.src(workingDir + '*.css')
+    return gulp.src('*.css')
         .pipe(replace(/background-image: url(.*);/ig, ''))
         .pipe(gulp.dest(workingDir));
 });
@@ -66,7 +66,7 @@ gulp.task('copy', function() {
     var options = {};
 
     return gulp
-        .src(['*.html', '*.png', '*.css', '*.svg'])
+        .src(['*.html', '*.png', '*.css', '*.svg', '*.js'])
         .pipe(removeCode({ production: true }))
         .pipe(gulpCopy(workingDir, { prefix: 1 }));
 });
