@@ -44,6 +44,7 @@ body {
     display: flex;
     border: 1px solid rgb(120, 120, 120);
     border-radius: 4px;
+    box-shadow: 2px 2px rgb(220, 220, 220);
     width: 252px;
     margin: 8px 0 0 0;
     padding: 12px;

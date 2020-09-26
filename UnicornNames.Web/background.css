@@ -1,0 +1,124 @@
+.searching-bot {
+    position: fixed;
+    width: 165px;
+    height: 127px;
+    bottom: 16px;
+    right: 16px;
+    background-image: url("./images/searching-bot.png");
+}
+
+.half1 {
+    position: absolute;
+    left: 11.88%;
+    right: 84.63%;
+    top: 27.17%;
+    bottom: 61.65%;
+}
+
+.gray-half-circle {
+    background-image: url("./images/gray-half-circle-left.svg");
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 238px
+}
+
+.circ1 {
+    left: 22.64%;
+    right: 75.62%;
+    top: 11.89%;
+    bottom: 85.32%;
+}
+
+.circ2 {
+    left: 20.56%;
+    right: 77.7%;
+    top: 32.67%;
+    bottom: 64.54%;
+}
+
+.circ3 {
+    left: 83.19%;
+    right: 15.06%;
+    top: 18.44%;
+    bottom: 78.76%;
+}
+
+.circ4 {
+    left: 69.24%;
+    right: 29.02%;
+    top: 60.44%;
+    bottom: 36.76%;
+}
+
+.circ5 {
+    left: 5.21%;
+    right: 93.05%;
+    top: 89.67%;
+    bottom: 7.54%;
+}
+
+.circ6 {
+    left: 28.33%;
+    right: 69.92%;
+    top: 72.22%;
+    bottom: 24.98%;
+}
+
+.circ7 {
+    left: 90.49%;
+    right: 7.77%;
+    top: 39.67%;
+    bottom: 57.54%;
+}
+
+.orange-circle {
+    position: absolute;
+    /* background: #FA4616; */
+    background-image: url("./images/orange-circle.svg");
+    background-repeat: no-repeat;
+}
+
+.orange-rect-vert {
+    position: absolute;
+    /* background: #FA4616; */
+    background-image: url("./images/orange-rect-vert.svg");
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 76px;
+}
+
+.rect1 {
+    left: 81.54%;
+    right: 16.72%;
+    top: 47.16%;
+    bottom: 44.46%;
+}
+
+.rect2 {
+    left: 9.59%;
+    right: 88.66%;
+    top: 69.05%;
+    bottom: 22.57%;
+}
+
+.orange-half-down {
+    position: absolute;
+    width: 101px;
+    height: 51px;
+    background-image: url("./images/orange-half-circ-down.svg");
+    background-repeat: no-repeat;
+}
+
+.down-circ1 {
+    left: 25.39%;
+    right: 71.12%;
+    top: 93.92%;
+    bottom: -5.1%;
+}
+
+.down-circ2 {
+    left: 92.36%;
+    right: 4.15%;
+    top: 78.37%;
+    bottom: 10.46%;
+}
