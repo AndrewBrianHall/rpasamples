@@ -1,23 +1,185 @@
-.unicorn-logo {
-    width: 80px;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-bottom: 20px;
-}
-
-.col-large,
-.col-med-lg {
-    display: inline-block;
-    width: 260px;
-    vertical-align: top;
-}
-
-.collapse {
-    height: 60px;
-}
-
 body {
     font-size: 16px;
+}
+
+.uipath-logo {
+    width: 272px;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Open Sans', 'Roboto', Arial, sans-serif;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2.1em;
+    font-weight: 400;
+    /* margin-bottom: 4px; */
+}
+
+.sub-title {
+    font-size: .9em;
+    color: rgb(65, 65, 65);
+}
+
+.input-block {
+    text-align: left;
+    width: 300px;
+    margin-top: 28px;
+}
+
+.output-block {
+    text-align: left;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    margin-top: 28px;
+    flex-direction: column;
+}
+
+.name-container {
+    display: flex;
+    border: 1px solid rgb(120, 120, 120);
+    border-radius: 4px;
+    width: 252px;
+    margin: 8px 0 0 0;
+    padding: 12px;
+    align-items: center;
+}
+
+.output-block-title {
+    font-size: .95em;
+    font-weight: 500;
+    color: rgb(65, 65, 65);
+}
+
+.text-placeholder {
+    font-size: .88em;
+    color: rgb(0, 75, 255);
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.lbl-orig {
+    display: inline-block;
+    width: 56px;
+}
+
+.lbl-orig-values {
+    font-size: .88em;
+    color: rgb(90, 90, 90);
+    margin-top: 4px;
+}
+
+.unicorn-spinner {
+    width: 42px;
+    height: 60px;
+    margin: auto 16px auto 16px;
+}
+
+.submit-button {
+    background-color: rgb(0, 75, 255);
+    color: white;
+    height: 44px;
+    width: 180px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: none;
+    border: 0;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.disabled-button {
+    color: rgb(120, 120, 120);
+    background-color: rgb(220, 220, 220);
+    border: 1px solid rgb(120, 120, 120);
+}
+
+.text-input {
+    width: 280px;
+    padding-left: 4px;
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid darkgray;
+    height: 24px;
+    margin-top: 4px;
+    font-size: 1em;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.label {
+    font-weight: 500;
+    color: rgb(65, 65, 65);
+    font-size: .95em;
+}
+
+.label-error {
+    font-size: .8em;
+    color: darkred;
+    margin-top: 4px;
+    padding-left: 4px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    width: 280px;
+    font-family: 'Roboto', Arial, sans-serif;
+    padding-left: 4px;
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid darkgray;
+    height: 28px;
+    margin-top: 4px;
+    font-size: 1em;
+    background-color: white;
+    /* you should keep these firsts rules in place to maintain cross-browser behaviour */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background-image: url('./ie-expander.png');
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    outline: none;
+}
+
+select:focus::-ms-value {
+    background-color: transparent;
+    color: black;
+    /* color: rgb(120, 120, 120); */
+}
+
+select:invalid {
+    color: rgb(120, 120, 120);
+}
+
+option {
+    color: black;
+}
+
+.spin {
+    animation: rotate-spinner .3s;
+}
+
+@keyframes rotate-spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -52,17 +52,61 @@ let progressElement = "pgrIndicator";
 let placeholderClass = "text-placeholder";
 let delay = 300;
 
-function getUnicornName() {
+function formIsValid() {
     let name = document.getElementById(nameField).value;
-    let month = getBirthMonth();
+    let monthEl = document.getElementById(monthField);
+    let month = monthEl.value; //getBirthMonth();
+
+    monthEl.blur();
 
     if (!checkValue(name)) {
-        alert("Enter your name");
-        return;
+        return false;
     } else if (!checkValue(month)) {
-        alert("Enter your birthday month");
+        return false;
+    }
+
+    return true;
+}
+
+function enableButton() {
+    let btn = document.getElementById("getNameButton");
+    btn.classList.remove("disabled-button");
+}
+
+function disableButton() {
+    let btn = document.getElementById("getNameButton");
+    btn.classList.add("disabled-button");
+}
+
+function formFieldChanged() {
+    if (formIsValid()) {
+        enableButton();
+    } else {
+        disableButton();
+    }
+}
+
+function getUnicornName() {
+    let name = document.getElementById(nameField).value;
+    let month = document.getElementById(monthField).value; //getBirthMonth();
+
+    let error = false;
+    if (!checkValue(name)) {
+        let el = document.getElementById("lblNameError");
+        el.classList.remove("hidden");
+        error = true;
+    }
+    if (!checkValue(month)) {
+        let el = document.getElementById("lblMonthError");
+        el.classList.remove("hidden");
+        error = true;
+    }
+
+    if (error) {
         return;
     }
+
+
 
     inProgress();
     setUnicornName(name, month);
@@ -87,6 +131,8 @@ function getBirthMonth() {
 }
 
 function inProgress() {
+    let outputBlock = document.getElementById("outputBlock");
+    outputBlock.classList.remove("hidden");
     let nameEl = document.getElementById(outputField);
     let progressEl = document.getElementById(progressElement)
     nameEl.classList.add(collapseClass);
@@ -100,7 +146,7 @@ function completed() {
     let progressEl = document.getElementById(progressElement)
 
     nameEl.classList.remove(collapseClass);
-    nameEl.classList.remove(placeholderClass)
+    // nameEl.classList.remove(placeholderClass)
     progressEl.classList.add(collapseClass);
     progressEl.classList.remove("spin");
 
@@ -153,9 +199,9 @@ function setUnicornName(name, month) {
 }
 
 function hideInputTable() {
-    let table = document.getElementById('tblDisplayInput');
+    // let table = document.getElementById('tblDisplayInput');
 
-    table.classList.add('collapse');
+    // table.classList.add('collapse');
 }
 
 function showInputTable() {
@@ -163,7 +209,7 @@ function showInputTable() {
     let monthDropdown = document.getElementById(monthField);
     let monthStr = monthDropdown.options[monthDropdown.selectedIndex].text;
 
-    let table = document.getElementById('tblDisplayInput');
+    // let table = document.getElementById('tblDisplayInput');
     let nameLable = document.getElementById('lblOriginalName');
     let bdayLabel = document.getElementById('lblOriginalBirthday');
 
@@ -171,7 +217,7 @@ function showInputTable() {
         monthStr = '';
     }
 
-    table.classList.remove('collapse');
+    // table.classList.remove('collapse');
 
     nameLable.innerText = name.value;
     bdayLabel.innerText = monthStr;
@@ -187,23 +233,23 @@ function checkValue(value) {
 
 //removeIf(production)
 function addTestValues() {
-    document.getElementById(nameField).value = "Andrew";
-    document.getElementById(monthField).value = "nov";
+    // document.getElementById(nameField).value = "Andrew";
+    document.getElementById(monthField).value = "";
 }
 
-function isLocal() {
-    try {
-        // IE doesn't support .startsWith
-        let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
-        let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
-        console.log(window.location.search);
-        return fromFile && queryOverride;
-    } catch (error) {
-        return false;
-    }
-}
+// function isLocal() {
+//     try {
+//         // IE doesn't support .startsWith
+//         let fromFile = window.location.href.toLocaleLowerCase().indexOf("file:///c:/") === 0;
+//         let queryOverride = window.location.search.toLocaleLowerCase().indexOf("nodefaults") === -1;
+//         console.log(window.location.search);
+//         return fromFile && queryOverride;
+//     } catch (error) {
+//         return false;
+//     }
+// }
 
-if (isLocal()) {
-    document.addEventListener("DOMContentLoaded", addTestValues, false);
-}
+// if (isLocal()) {
+document.addEventListener("DOMContentLoaded", addTestValues, false);
+// }
 //endRemoveIf(production)
