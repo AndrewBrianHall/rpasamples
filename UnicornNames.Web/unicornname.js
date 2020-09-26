@@ -139,6 +139,7 @@ function completed() {
     //endRemoveIf(production)
     document.getElementById(nameField).value = '';
     document.getElementById(monthField).value = '';
+    disableButton();
     //removeIf(production)
     // }
     //endRemoveIf(production)

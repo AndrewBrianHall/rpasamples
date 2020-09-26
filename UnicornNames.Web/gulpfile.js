@@ -40,7 +40,7 @@ gulp.task('create-inline-image-css', function() {
 });
 
 gulp.task('inline', function() {
-    const remote_font_to_replace = escapeStringRegexp(remote_font);
+    const remote_font_to_replace = /https:\/\/fonts\.googleapis\.com\/.*swap/ig;
 
     return gulp.src([workingDir + '*.html'])
         .pipe(injectString.before('</head>', '<link rel="stylesheet" href="inline-background.css" />'))
