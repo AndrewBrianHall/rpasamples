@@ -147,6 +147,6 @@ gulp.task('inject-local', function() {
         .pipe(gulp.dest(workingDir));
 });
 
-gulp.task('web', gulp.series('inline-fonts', 'create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-web'));
-gulp.task('local', gulp.series('inline-fonts', 'create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-local'));
+gulp.task('web', gulp.series('create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-web'));
+gulp.task('local', gulp.series('create-inline-image-css', 'copy', 'remove-background-urls', 'inline', 'minhtml', 'create-local'));
 gulp.task('default', gulp.series('web', 'local'));

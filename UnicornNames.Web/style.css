@@ -109,11 +109,16 @@ body {
     font-size: 1em;
 }
 
-.submit-button:focus,
+.submit-button:focus {
+    outline: 0;
+    border: 3px solid rgb(16, 65, 170);
+}
+
 .submit-button:active {
     outline: 0;
 }
 
+.disabled-button:focus,
 .disabled-button {
     color: rgb(120, 120, 120);
     background-color: rgb(220, 220, 220);
@@ -132,6 +137,10 @@ body {
     font-size: 1em;
     font-family: 'Roboto', Arial, sans-serif;
     vertical-align: middle;
+}
+
+.text-input:focus {
+    border: 1px solid black;
 }
 
 .label {
@@ -180,6 +189,10 @@ select:focus::-ms-value {
     background-color: transparent;
     color: black;
     /* color: rgb(120, 120, 120); */
+}
+
+select:focus {
+    border: 1px solid black;
 }
 
 select:invalid {

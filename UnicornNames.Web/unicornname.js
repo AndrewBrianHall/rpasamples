@@ -70,6 +70,7 @@ function enableButton() {
 function disableButton() {
     let btn = document.getElementById("getNameButton");
     btn.classList.add("disabled-button");
+    btn.blur();
 }
 
 function formFieldChanged() {
@@ -234,6 +235,10 @@ function checkValue(value) {
 // }
 
 // if (isLocal()) {
-//     document.addEventListener("DOMContentLoaded", addTestValues, false);
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById(nameField).value = '';
+    document.getElementById(monthField).value = '';
+    formFieldChanged();
+}, false);
 // }
 // //endRemoveIf(production)
