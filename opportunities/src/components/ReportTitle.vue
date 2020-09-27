@@ -38,8 +38,8 @@ div.report-icon {
   width: $icon-size;
   background-color: $icon-color;
   display: inline-block;
-  border-radius: 4px;
-  margin-right: 5px;
+  border-radius: 2px;
+  margin-right: 8px;
 }
 
 .inline-block {

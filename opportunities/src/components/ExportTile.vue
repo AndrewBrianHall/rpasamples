@@ -38,7 +38,7 @@ export default {
 .export-option {
   width: 188px;
   border: 1px solid $export-header-border-color;
-  border-radius: 4px;
+  border-radius: 0px;
   padding: $option-container-top-padding $option-container-right-padding 20px
     4px;
   margin: 4px 16px 4px 0px;

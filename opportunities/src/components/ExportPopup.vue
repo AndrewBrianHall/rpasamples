@@ -152,7 +152,7 @@ export default {
   margin: 80px auto auto auto;
   //   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 0px;
   // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
@@ -207,13 +207,15 @@ export default {
 
 .footer-button {
   margin: 8px;
+  height: 32px;
+  width: 76px;
   // font-size: 0.98em;
 }
 
 .cancel-button {
   @extend button.export-shape-props;
   border: 1px solid rgb(180, 180, 180);
-  color: $icon-color;
+  color: rgb(50,50,50);
   background-color: white;
   font-size: 0.95em;
 }
@@ -227,7 +229,7 @@ select{
   padding: 4px 0px;
   margin: 2px 0px;
   border: 1px solid rgb(180, 180, 180);
-  border-radius: 4px;
+  border-radius: 0px;
   cursor: pointer;
 }
 

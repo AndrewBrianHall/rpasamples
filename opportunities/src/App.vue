@@ -10,10 +10,14 @@
       <ReportTitle v-bind:exportExcel="exportExcel" />
       <Opportunities v-bind:data="data" />
     </div>
-    <div :style="{visibility: showExportMessage ? 'visible' : 'hidden'}" class="export-message">
+    <div
+      :style="{ visibility: showExportMessage ? 'visible' : 'hidden' }"
+      class="export-message"
+    >
       Exported using
       <a href="https://sheetjs.com/opensource">sheetjs community</a>
     </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -55,8 +59,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import "./styles/constants.scss";
 
 $border-color: rgb(175, 175, 175);
@@ -69,11 +73,12 @@ $border-color: rgb(175, 175, 175);
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   display: inline-block;
 }
 
 .main-report {
-  border-radius: 6px;
+  border-radius: 0px;
   border: 1px solid $border-color;
   background-color: white;
   padding-bottom: $left-report-padding;

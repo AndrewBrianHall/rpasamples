@@ -1,17 +1,15 @@
 @import './constants.scss';
 $icon-size: 28px;
-$export-btn-width: 80px;
-$export-btn-height: $icon-size;
+$export-btn-width: 88px;
+$export-btn-height: 36px;
 button {
     font-family: $font-families;
     // font-size: 1.05em;
 }
 
 button.export-shape-props {
-    border-radius: 4px;
+    border-radius: 0px;
     border-style: solid;
-    height: $export-btn-height;
-    width: $export-btn-width;
     cursor: pointer;
 }
 
@@ -26,4 +24,7 @@ button.btn-export {
     @extend button.export-common;
     margin-left: auto;
     margin-right: $right-table-padding - $left-report-padding;
+    height: $export-btn-height;
+    width: $export-btn-width;
+    font-size: 1.05em;
 }
