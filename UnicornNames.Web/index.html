@@ -43,17 +43,17 @@
     <div class="bg-shape-base gray-rect rect5"></div>
     <div class="bg-shape-base gray-rect rect6"></div>
     <div class="searching-bot"></div>
-    <div class="page-container">
-        <div class="main-title">Unicorn Name Generator</div>
-        <div class="sub-title">This is part of the UiPath Studio Onboarding Tutorial</div>
-        <div class="input-block">
-            <div class="label">What is your name?*</div>
-            <input class="text-input" type="text" id="txtName" placeholder="Enter your name" onkeyup="formFieldChanged()" onchange="formFieldChanged()">
+    <div class="page-container set-font">
+        <span class="main-title">Unicorn Name Generator</span>
+        <span class="sub-title">This is part of the UiPath Studio Onboarding Tutorial</span>
+        <div class="input-block container">
+            <span class="label">What is your name?*</span>
+            <input class="text-input set-font" type="text" id="txtName" placeholder="Enter your name" onkeyup="formFieldChanged()" onchange="formFieldChanged()">
             <div class="label-error hidden" id="lblNameError">Enter your name</div>
         </div>
         <div class="input-block container">
-            <div class="label">What is your birth month?</div>
-            <select id="selMonth" class="down-chevron" onchange="formFieldChanged()" required>
+            <span class="label">What is your birth month?</span>
+            <select id="selMonth" class="down-chevron set-font" onchange="formFieldChanged()" required>
                 <option value='' selected>Select your birth month</option>
                 <option value="jan">January</option>
                 <option value="feb">February</option>
@@ -71,10 +71,10 @@
             <div class="label-error hidden" id="lblMonthError">Enter your birth month</div>
         </div>
         <div class="button-container container">
-            <button class="submit-button disabled-button" onclick="getUnicornName()" id="getNameButton">Get Unicorn Name</button>
+            <button class="submit-button set-font disabled-button" onclick="getUnicornName()" id="getNameButton">Get Unicorn Name</button>
         </div>
         <div class="output-block container hidden" id="outputBlock">
-            <div class="output-block-title">This is your unicorn name</div>
+            <span class="output-block-title">This is your unicorn name</span>
             <div class="name-container">
                 <img src="rocketunicorn-80.png" id="pgrIndicator" class="unicorn-spinner">
                 <div class="output-text">
