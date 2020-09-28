@@ -134,9 +134,13 @@ gulp.task('create-local', function() {
 });
 
 gulp.task('create-web', function() {
+    const subTitle = 'This is part of the UiPath Studio Onboarding Tutorial';
+    const newSubTitle = 'An app for learning UI Automation with UiPath';
+
     return gulp.src(workingDir + '*.html')
         .pipe(injectString.after('<head>', '<link rel="shortcut icon" href="/assets/rocketunicorn.ico">'))
         .pipe(injectString.before('</head>', '<script src=/appinsights.js async></script>'))
+        .pipe(replace(subTitle, newSubTitle))
         .pipe(gulp.dest(outputDir + 'web'));;
 })
 

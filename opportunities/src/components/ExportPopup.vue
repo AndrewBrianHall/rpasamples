@@ -254,6 +254,7 @@ select {
   background-position: 98% center;
   background-repeat: no-repeat;
   outline: none;
+  padding-left: 4px;
 }
 
 select:disabled {
