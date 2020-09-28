@@ -5,209 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="shortcut icon" href="https://www.rpasamples.com/assets/rocketunicorn.ico">
     <title>
         Sales Opportunities
     </title>
+    <link rel="shortcut icon" href="https://www.rpasamples.com/assets/rocketunicorn.ico">
+    <link rel="stylesheet" href="<%- VUE_APP_INDEX_PATH %>index-all.css">
     <style>
-        body {
-            /* background-color: rgb(176, 196, 223); */
-            background-color: rgb(247, 247, 247);
-            text-align: center;
-        }
-        
-        .background-header {
-            z-index: -2;
-            position: absolute;
-            background-image: radial-gradient(#7386a1 6%, transparent 0);
-            background-size: 24px 24px;
-            background-position: 13px 13px;
-            height: 100px;
-            width: 40%;
-        }
-        
-        .background-footer {
-            z-index: -2;
-            position: absolute;
-            background-image: radial-gradient(#7386a1 6%, transparent 0);
-            background-size: 24px 24px;
-            background-position: 13px 13px;
-            height: 32%;
-            width: 30%;
-            bottom: 0px;
-            right: 0px;
-        }
-        
-        .searching-bot {
-            position: fixed;
-            width: 165px;
-            height: 127px;
-            bottom: 16px;
-            right: 16px;
-            background-image: url("./searching-bot.png");
-            border-style: none;
-            z-index: 1;
-        }
-        
-        .uipath-logo {
-            width: 200px;
-            position: absolute;
-            left: 10px;
-            background-color: rgb(247, 247, 247);
-        }
-        
-        .bg-shape-base {
-            position: absolute;
-            z-index: -2;
-        }
-        
-        .gray-half-circle {
-            background-image: url("./images/gray-half-circle.svg");
-            background-repeat: no-repeat;
-            width: 51px;
-            height: 101px;
-        }
-        
-        .gray-half-circle-right {
-            transform: matrix(-1, 0, 0, 1, 0, 0);
-        }
-        
-        .half-circle-up {
-            transform: rotate(90deg);
-        }
-        
-        .gray-circle {
-            background-image: url("./images/gray-circle.svg");
-            background-repeat: no-repeat;
-            width: 26px;
-            height: 26px;
-        }
-        
-        .gray-rect {
-            background-image: url("./images/gray-rect.svg");
-            background-repeat: no-repeat;
-            width: 76px;
-            height: 26px;
-        }
-        
-        .half1 {
-            left: 11.88%;
-            right: 84.63%;
-            top: 27.17%;
-            bottom: 61.65%;
-        }
-        
-        .half2 {
-            right: 11.88%;
-            left: 84.63%;
-            top: 41%;
-            bottom: 47.83%;
-        }
-        
-        .half3 {
-            left: 60.76%;
-            right: 36.75%;
-            top: 86.78%;
-            bottom: 3.95%;
-        }
-        
-        .gray-circ1 {
-            left: 3.47%;
-            right: 94.78%;
-            top: 16.67%;
-            bottom: 80.54%;
-        }
-        
-        .gray-circ2 {
-            left: 93.33%;
-            right: 4.92%;
-            top: 8.11%;
-            bottom: 89.1%;
-        }
-        
-        .gray-circ3 {
-            left: 18.82%;
-            right: 79.43%;
-            top: 44%;
-            bottom: 53.21%;
-        }
-        
-        .gray-circ4 {
-            left: 2.42%;
-            right: 95.84%;
-            top: 66%;
-            bottom: 31.21%;
-        }
-        
-        .gray-circ5 {
-            left: 7.85%;
-            right: 90.41%;
-            top: 79.44%;
-            bottom: 17.76%;
-        }
-        
-        .gray-circ6 {
-            left: 29.17%;
-            right: 69.09%;
-            top: 86.78%;
-            bottom: 10.43%;
-        }
-        
-        .gray-circ7 {
-            left: 57.15%;
-            right: 41.1%;
-            top: 81.33%;
-            bottom: 15.87%;
-        }
-        
-        .gray-circ8 {
-            left: 47.18%;
-            right: 51.07%;
-            top: 94.89%;
-            bottom: 2.32%;
-        }
-        
-        .gray-circ9 {
-            left: 96.46%;
-            right: 1.8%;
-            top: 30.11%;
-            bottom: 67.1%;
-        }
-        
-        .gray-circ10 {
-            left: 79.79%;
-            right: 18.46%;
-            top: 58.56%;
-            bottom: 38.65%;
-        }
-        
-        .rect1 {
-            left: 3.21%;
-            right: 95.05%;
-            top: 90.79%;
-            bottom: 1.83%;
-        }
-        
-        .rect2 {
-            left: 43.21%;
-            right: 55.05%;
-            top: 86.79%;
-            bottom: 5.83%;
-        }
-        
-        .rect5 {
-            left: 3.21%;
-            right: 95.05%;
-            top: 49.79%;
-            bottom: 41.83%;
-        }
-        
-        .rect6 {
-            left: 84.19%;
-            right: 14.06%;
-            top: 18.44%;
-            bottom: 78.76%;
-        }
+
     </style>
     <%= VUE_APP_APP_INSIGHTS_TAG %>
 </head>
@@ -217,8 +21,9 @@
         <strong>We're sorry but Sales Opportunities doesn't work properly without JavaScript enabled. Please enable it
             to continue.</strong>
     </noscript>
-    <a href="https://www.uipath.com"><img class="uipath-logo" src="./uipath-logo.svg"></img>
-    </a>
+    <!-- <a href="https://www.uipath.com"> -->
+    <div class="uipath-logo"></div>
+    <!-- </a> -->
     <div class="bg-shape-base gray-half-circle half1"></div>
     <div class="bg-shape-base gray-half-circle gray-half-circle-right half2"></div>
     <div class="bg-shape-base gray-half-circle half-circle-up half3"></div>
@@ -238,7 +43,7 @@
     <div class="bg-shape-base gray-rect rect6"></div>
     <div id="app"></div>
     <div class="background-footer">
-        <div class="searching-bot"></div>
+        <div class="clipboard-bot"></div>
     </div>
     <!-- built files will be auto injected -->
 </body>

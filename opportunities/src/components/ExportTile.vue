@@ -62,8 +62,8 @@ export default {
   height: 31px;
   width: 31px;
   background-color: $lighter-blue;
-  margin-top: $option-container-top-padding * -1;
-  margin-right: $option-container-right-padding * -1;
+  margin-top: $option-container-top-padding * -1 - 1;
+  margin-right: $option-container-right-padding * -1 - 1;
 
   overflow: hidden;
   // display: flex;

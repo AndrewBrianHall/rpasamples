@@ -17,7 +17,11 @@
             </div>
             <div>
               <div class="lbl-export-format">Format</div>
-              <select v-model="exportFileFormat" v-bind:disabled="disableExportormatPicker">
+              <select
+                class="down-chevron"
+                v-model="exportFileFormat"
+                v-bind:disabled="disableExportormatPicker"
+              >
                 <option value="xlsx">Excel (*.xlsx)</option>
                 <option value="csv">Comma Separated (*.csv)</option>
               </select>
@@ -25,8 +29,15 @@
           </div>
 
           <div class="modal-footer">
-            <button class="cancel-button footer-button" v-on:click="closePopup">Cancel</button>
-            <button class="export-common footer-button" v-on:click="exportClick">Export</button>
+            <button class="cancel-button footer-button" v-on:click="closePopup">
+              Cancel
+            </button>
+            <button
+              class="export-common footer-button"
+              v-on:click="exportClick"
+            >
+              Export
+            </button>
           </div>
         </div>
       </div>
@@ -71,7 +82,10 @@ export default {
     },
     exportClick: function () {
       let exportOption = this.getSelectedOption();
-      this.data.exportData({ option: exportOption, fileFormat: this.exportFileFormat });
+      this.data.exportData({
+        option: exportOption,
+        fileFormat: this.exportFileFormat,
+      });
       this.exportedCallback(true);
       this.showModal = false;
     },
@@ -79,17 +93,16 @@ export default {
       this.showModal = true;
       this.exportedCallback(false);
 
-       for (let i = 0; i < this.options.length; i++) {
-         let option = this.options[i];
-         if(option.selected){
-           if(option.supportsCsv){
-             this.disableExportormatPicker = false;
-           }
-           else{
-             this.disableExportormatPicker = true;
-           }
-         }
-       }
+      for (let i = 0; i < this.options.length; i++) {
+        let option = this.options[i];
+        if (option.selected) {
+          if (option.supportsCsv) {
+            this.disableExportormatPicker = false;
+          } else {
+            this.disableExportormatPicker = true;
+          }
+        }
+      }
     },
     getSelectedOption: function () {
       for (let i = 0; i < this.options.length; i++) {
@@ -106,8 +119,7 @@ export default {
           if (!this.options[i].supportsCsv) {
             this.exportFileFormat = "xlsx";
             this.disableExportormatPicker = true;
-          }
-          else{
+          } else {
             this.disableExportormatPicker = false;
           }
         } else {
@@ -215,25 +227,46 @@ export default {
 .cancel-button {
   @extend button.export-shape-props;
   border: 1px solid rgb(180, 180, 180);
-  color: rgb(50,50,50);
+  color: rgb(50, 50, 50);
   background-color: white;
   font-size: 0.95em;
 }
 
-.lbl-export-format{
-  font-size: .95em;
+.lbl-export-format {
+  font-size: 0.95em;
 }
 
-select{
+select::-ms-expand {
+  display: none;
+}
+
+select {
   width: 198px;
   padding: 4px 0px;
   margin: 2px 0px;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 0px;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  outline: none;
 }
 
-select:disabled{
+select:disabled {
   background-color: rgb(245, 245, 245);
+}
+
+select:focus::-ms-value {
+  background-color: transparent;
+  color: black;
+  /* color: rgb(120, 120, 120); */
+}
+
+select:focus {
+  border: 1px solid black;
 }
 </style>
