@@ -87,5 +87,6 @@ $border-color: rgb(175, 175, 175);
 .export-message {
   text-align: right;
   margin-top: 8px;
+  background-color: rgb(247, 247, 247);;
 }
 </style>
