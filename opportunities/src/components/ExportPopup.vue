@@ -134,6 +134,7 @@ export default {
 <style scoped lang="scss">
 @import "../styles/constants.scss";
 @import "../styles/export.scss";
+@import "../styles/popup.scss";
 
 .options-header {
   font-size: 1.125em;
@@ -145,34 +146,6 @@ export default {
   display: flex;
   height: 144px;
   // justify-content: center;
-}
-
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.modal-container {
-  width: 480px;
-  margin: 80px auto auto auto;
-  //   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 0px;
-  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-}
-
-.modal-header {
-  padding: 12px;
-  font-size: 1.4em;
-  color: $export-header-color;
 }
 
 .modal-body {
@@ -195,34 +168,6 @@ export default {
  * You can easily play with the modal transition by editing
  * these styles.
  */
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 8px;
-  background-color: rgb(245, 245, 245);
-}
-
-.footer-button {
-  margin: 8px;
-  height: 32px;
-  width: 76px;
-  // font-size: 0.98em;
-}
 
 .cancel-button {
   @extend button.export-shape-props;

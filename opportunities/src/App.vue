@@ -6,7 +6,10 @@
       v-bind:data="data"
       v-bind:exportedCallback="setExportStatus"
     />
-    <div class="main-report">
+    <LoginPopup 
+      ref="loginPopup" 
+      />
+    <div class="main-report" v-if="showReport">
       <ReportTitle v-bind:exportExcel="exportExcel" />
       <Opportunities v-bind:data="data" />
     </div>
@@ -26,6 +29,7 @@ import DataCollection from "./models/data.js";
 import ReportTitle from "./components/ReportTitle.vue";
 import Opportunities from "./components/Opportunities.vue";
 import ExportPopup from "./components/ExportPopup.vue";
+import LoginPopup from "./components/LoginPopup.vue";
 
 export default {
   name: "App",
@@ -33,18 +37,29 @@ export default {
     Opportunities,
     ReportTitle,
     ExportPopup,
+    LoginPopup,
   },
   data() {
     return {
       data: new DataCollection(),
       showExportMessage: false,
       showExportPopup: false,
+      showReport: true,
     };
   },
   computed: {
     totalRecords: function () {
       return this.data.totalOpportunities;
     },
+  },
+  mounted:function(){
+    const queryString = window.location.search;
+    const queryParams = new URLSearchParams(queryString.toLowerCase());
+    const requireLogin = queryParams.get('requirelogin');
+    const randLogin = queryParams.get('randlogin');
+    if(requireLogin === 'true' || (randLogin === 'true' && Math.random() > .7)){
+      this.showLogin();
+    }
   },
   methods: {
     exportExcel: function (event) {
@@ -54,6 +69,11 @@ export default {
     setExportStatus: function (exported) {
       this.showExportMessage = exported;
     },
+    showLogin: function(){
+      const popup = this.$refs.loginPopup;
+      this.showReport = false;
+      popup.open();
+    }
   },
 };
 </script>
