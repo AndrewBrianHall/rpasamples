@@ -57,7 +57,7 @@ export default {
     const queryParams = new URLSearchParams(queryString.toLowerCase());
     const requireLogin = queryParams.get('requirelogin');
     const randLogin = queryParams.get('randlogin');
-    if(requireLogin === 'true' || (randLogin === 'true' && Math.random() > .7)){
+    if(requireLogin === 'true' || (randLogin === 'true' && Math.random() >= .667)){
       this.showLogin();
     }
   },
