@@ -57,8 +57,8 @@ export default {
     const randLoginParam = queryParams.get("randlogin");
     const randomLoginParam = queryParams.get("randomlogin");
     const randPctParam = queryParams.get("randpct");
-    const DefaultRandPct = 60;
-    const randPct = randPctParam !== null && randPctParam !== undefined ? (100 - parseInt(randPctParam)) : DefaultRandPct;
+    const DefaultRandPct = 40;
+    const randPct = randPctParam !== null && randPctParam !== undefined ? (100 - parseInt(randPctParam)) : 100 - DefaultRandPct;
     const randomLogin = (randLoginParam === "true" || randomLoginParam === "true") && (Math.random() * 100) >= randPct;
     const showLogin = requireLogin === "true" || randomLogin;
 
