@@ -13,13 +13,13 @@
     transform: scale(1.1);
 }
 
-.modal-header {
+.popup-header {
     padding: 12px;
     font-size: 1.4em;
     color: $export-header-color;
 }
 
-.modal-footer {
+.popup-footer {
     display: flex;
     justify-content: flex-end;
     padding-right: 8px;

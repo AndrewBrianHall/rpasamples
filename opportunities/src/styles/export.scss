@@ -20,10 +20,8 @@ button.export-common {
     color: white;
 }
 
-button.btn-export {
+.btn-export {
     @extend button.export-common;
-    margin-left: auto;
-    margin-right: $right-table-padding - $left-report-padding;
     height: $export-btn-height;
     width: $export-btn-width;
     font-size: 1.05em;

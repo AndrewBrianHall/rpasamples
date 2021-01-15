@@ -3,7 +3,7 @@
     <transition name="modal" v-if="showModal">
       <div class="modal-mask">
         <div class="modal-container">
-          <div class="modal-header">Log In</div>
+          <div class="popup-header">Log In</div>
           <div class="dialog-body">
             <div class="invalid-message" v-if="invalidLogin">Invalid email or password (Hint: enter any value for both)</div>
             <div class="login-box-container">
@@ -13,7 +13,7 @@
               <input ref="txtPassword" type="password" class="login-box" placeholder="Password" v-on:keyup.enter="login" />
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="popup-footer">
             <button class="login-button footer-button" v-on:click="login">
               Login
             </button>
@@ -86,6 +86,7 @@ export default {
 
 .dialog-body{
     margin-top: 8px;
+    margin-bottom: 12px;
 }
 
 button.login-button {

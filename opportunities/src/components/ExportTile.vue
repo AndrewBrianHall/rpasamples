@@ -72,7 +72,7 @@ export default {
 .chkImage {
   height: 16px;
   width: 16px;
-  margin: -1px auto auto 12px;
+  margin: -6px auto auto 11px;
 }
 
 .selectedCheckmark:after {

@@ -3,9 +3,9 @@
     <transition name="modal" v-if="showModal">
       <div class="modal-mask">
         <div class="modal-container">
-          <div class="modal-header">Export</div>
+          <div class="popup-header">Export</div>
 
-          <div class="modal-body">
+          <div class="popup-body">
             <div class="options-header">Export View</div>
             <div class="export-options-row">
               <ExportTile
@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <div class="modal-footer">
+          <div class="popup-footer">
             <button class="cancel-button footer-button" v-on:click="closePopup">
               Cancel
             </button>
@@ -148,12 +148,12 @@ export default {
   // justify-content: center;
 }
 
-.modal-body {
+.popup-body {
   text-align: left;
   border-top: 2px solid $export-header-border-color;
   border-bottom: 2px solid $export-header-border-color;
   padding: 16px;
-  height: 224px;
+  // height: 224px;
 }
 
 .modal-default-button {

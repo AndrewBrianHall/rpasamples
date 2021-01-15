@@ -6,9 +6,7 @@
       v-bind:data="data"
       v-bind:exportedCallback="setExportStatus"
     />
-    <LoginPopup 
-      ref="loginPopup" 
-      />
+    <LoginPopup ref="loginPopup" />
     <div class="main-report" v-if="showReport">
       <ReportTitle v-bind:exportExcel="exportExcel" />
       <Opportunities v-bind:data="data" />
@@ -52,12 +50,19 @@ export default {
       return this.data.totalOpportunities;
     },
   },
-  mounted:function(){
+  mounted: function () {
     const queryString = window.location.search;
     const queryParams = new URLSearchParams(queryString.toLowerCase());
-    const requireLogin = queryParams.get('requirelogin');
-    const randLogin = queryParams.get('randlogin');
-    if(requireLogin === 'true' || (randLogin === 'true' && Math.random() >= .667)){
+    const requireLogin = queryParams.get("requirelogin");
+    const randLoginParam = queryParams.get("randlogin");
+    const randomLoginParam = queryParams.get("randomlogin");
+    const randPctParam = queryParams.get("randpct");
+    const DefaultRandPct = 60;
+    const randPct = randPctParam !== null && randPctParam !== undefined ? (100 - parseInt(randPctParam)) : DefaultRandPct;
+    const randomLogin = (randLoginParam === "true" || randomLoginParam === "true") && (Math.random() * 100) >= randPct;
+    const showLogin = requireLogin === "true" || randomLogin;
+
+    if (showLogin) {
       this.showLogin();
     }
   },
@@ -69,11 +74,11 @@ export default {
     setExportStatus: function (exported) {
       this.showExportMessage = exported;
     },
-    showLogin: function(){
+    showLogin: function () {
       const popup = this.$refs.loginPopup;
       this.showReport = false;
       popup.open();
-    }
+    },
   },
 };
 </script>
@@ -84,6 +89,10 @@ export default {
 @import "./styles/constants.scss";
 
 $border-color: rgb(175, 175, 175);
+
+body {
+  text-align: center;
+}
 
 #app {
   font-family: $font-families;
@@ -107,6 +116,6 @@ $border-color: rgb(175, 175, 175);
 .export-message {
   text-align: right;
   margin-top: 8px;
-  background-color: rgb(247, 247, 247);;
+  background-color: rgb(247, 247, 247);
 }
 </style>
