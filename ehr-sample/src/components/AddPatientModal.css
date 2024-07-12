@@ -1,65 +1,85 @@
 .modal {
-    position: fixed;
-    left: 50%;
-    top: 51%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 2px solid black;
-    z-index: 3;
-    width: 80%; /* Optional to give more space */
-    max-width: 800px; /* Set a maximum width */
-  }
-  
-  .inputGroup {
-    flex: 1;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .inputGroup input, .inputGroup select, .textareaGroup textarea {
-    padding: 8px;      /* Provides ample padding for ease of use */
-    margin: 4px;     /* Adds a standard margin to the top and bottom */
-    font-size: 16px;   /* Ensures text is easily readable */
-    border: 1px solid #ccc; /* Adds a subtle border */
-    border-radius: 4px; /* Slightly rounds the corners for a smoother look */
-  }  
-  
-  .row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .textareaGroup {
-    flex: 1; /* Take full width of the modal */
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: flex-end; /* Ensures buttons start from the left */
-  }
-  
-  .button {
-    padding: 8px 16px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    margin-right: 10px;
-    width: 80px;
-  }
-  
-  .addButton {
-    background-color: royalblue;
-    color: white;
-  }
-  
-  .cancelButton {
-    background-color: gray;
-    color: white;
-  }
-  
+  position: fixed;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 16px;
+  border: 2px solid black;
+  z-index: 3;
+  width: 80%; /* Adjusts width based on viewport */
+  max-width: 800px; /* Maximum width constraint */
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Limits height to 90% of the viewport height */
+}
+
+.modalHeader {
+  margin-top: -8px;
+  padding-bottom: 4px;
+}
+
+.modalBody {
+  overflow-y: auto; /* Adds vertical scrollbar if content overflows */
+  flex-grow: 1; /* Takes up all available space */
+  /* font-size: 14px; */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Distributes space between inputs */
+  margin-bottom: 8px;
+  flex-wrap: wrap; /* Allows items to wrap in smaller screens if necessary */
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Allows each group to expand and share available space */
+  min-width: 120px; /* Ensures that input doesn't get too narrow on smaller screens */
+  margin-right: 10px; /* Adds spacing between input groups */
+}
+
+.inputGroup input, .inputGroup select, .textareaGroup textarea {
+  padding: 8px;
+  margin: 4px 4px 4px 0;
+  /* font-size: 14px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.textareaGroup {
+  width: 100%; /* Ensures the textarea group takes the full width of the modal */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; /* Keeps consistent spacing */
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  padding-top: 10px;
+}
+
+.button {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  margin-right: 10px;
+  width: 80px;
+}
+
+.addButton {
+  background-color: royalblue;
+  color: white;
+}
+
+.cancelButton {
+  background-color: gray;
+  color: white;
+}
+
+label {
+  font-weight:500;
+}
