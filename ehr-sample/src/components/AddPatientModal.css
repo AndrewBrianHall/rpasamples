@@ -1,0 +1,65 @@
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 51%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    z-index: 3;
+    width: 80%; /* Optional to give more space */
+    max-width: 800px; /* Set a maximum width */
+  }
+  
+  .inputGroup {
+    flex: 1;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputGroup input, .inputGroup select, .textareaGroup textarea {
+    padding: 8px;      /* Provides ample padding for ease of use */
+    margin: 4px;     /* Adds a standard margin to the top and bottom */
+    font-size: 16px;   /* Ensures text is easily readable */
+    border: 1px solid #ccc; /* Adds a subtle border */
+    border-radius: 4px; /* Slightly rounds the corners for a smoother look */
+  }  
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .textareaGroup {
+    flex: 1; /* Take full width of the modal */
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end; /* Ensures buttons start from the left */
+  }
+  
+  .button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 80px;
+  }
+  
+  .addButton {
+    background-color: royalblue;
+    color: white;
+  }
+  
+  .cancelButton {
+    background-color: gray;
+    color: white;
+  }
+  

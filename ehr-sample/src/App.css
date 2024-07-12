@@ -1,0 +1,22 @@
+.verticalTabs {
+  width: 200px;
+  height: 100vh;
+  background-color: navy;
+  padding: 10px;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  overflow-y: auto;
+}
+
+.tabLink {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.activeTabLink {
+  background-color: royalblue;
+}
